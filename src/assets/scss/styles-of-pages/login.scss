@@ -1,0 +1,46 @@
+.general-login {
+  padding-top: 200px;
+}
+
+.login {
+  background: white;
+  width: 60%;
+  margin: 0px auto;
+  border-radius: 5px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+  h1 {
+    color: #ff7f0b;
+  }
+  .logo-login {
+    width: 250px;
+  }
+  #container-login {
+    background: rgb(46, 64, 83);
+    background: linear-gradient(
+      0deg,
+      rgba(46, 64, 83, 1) 0%,
+      rgba(93, 109, 126, 1) 100%
+    );
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    h3 {
+      color: white;
+    }
+    .ant-form {
+      #username,
+      .ant-input-affix-wrapper {
+        background: #ffffff44;
+        color: white;
+      }
+      #password {
+        background: transparent;
+        color: white;
+      }
+      .ant-input-password-icon,
+      .checkbox {
+        color: white;
+      }
+    }
+  }
+}
