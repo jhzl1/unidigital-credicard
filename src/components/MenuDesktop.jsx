@@ -1,54 +1,58 @@
 import { useState } from "react";
-import { Menu, Layout } from "antd";
+import { Link } from "react-router-dom";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import {
   UserOutlined,
   FundOutlined,
   ReadOutlined,
   FileOutlined,
   BarChartOutlined,
+  RightOutlined,
+  LeftOutlined,
 } from "@ant-design/icons";
-import LogoTransparent from "../assets/img/unidigital-transparent.png";
+import LogoTransparent from "../assets/img/unidigital-logo-color.png";
 
 const MenuDesktop = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const { SubMenu } = Menu;
-  const { Sider } = Layout;
-
+  const [toggle, setToggle] = useState(false);
   return (
-    <Sider
-      collapsible
-      collapsed={collapsed}
-      onCollapse={() => setCollapsed(!collapsed)}
-      className="site-layout-background"
-    >
-      <img
-        src={LogoTransparent}
-        alt=""
-        style={{ width: "50px" }}
-        className="logo-menu"
-      />
-      <Menu mode="inline" theme="dark" id="menu-navbar">
-        <SubMenu key="sub1" icon={<FileOutlined />} title="Documentos">
-          <Menu.Item key="1">Número de documento</Menu.Item>
-          <Menu.Item key="2">Número de control</Menu.Item>
-          <Menu.Item key="3">RIF o cédula</Menu.Item>
-          <Menu.Item key="4">Tipo de Documento</Menu.Item>
+    <ProSidebar collapsed={toggle}>
+      <Link to="/home">
+        <img
+          src={LogoTransparent}
+          alt=""
+          style={{ width: "50px" }}
+          className="logo-menu"
+        />
+      </Link>
+      <Menu iconShape="square" style={{ minHeight: "84vh" }}>
+        <SubMenu icon={<FileOutlined />} title="Documentos" className="submenu">
+          <MenuItem>
+            <Link to="/documents/SearchByNumber">Número de documento</Link>
+          </MenuItem>
+          <MenuItem>Número de control</MenuItem>
+          <MenuItem>RIF o cédula</MenuItem>
+          <MenuItem>Tipo de Documento</MenuItem>
         </SubMenu>
-        <SubMenu key="sub2" icon={<FundOutlined />} title="Ciclos">
-          <Menu.Item key="5">Lista</Menu.Item>
+        <SubMenu icon={<FundOutlined />} title="Ciclos">
+          <MenuItem>Listas</MenuItem>
         </SubMenu>
-        <SubMenu key="sub3" icon={<BarChartOutlined />} title="Indicadores">
-          <Menu.Item key="6">Por Archivo / Oficina</Menu.Item>
+        <SubMenu icon={<BarChartOutlined />} title="Indicadores">
+          <MenuItem>Por Archivo / Oficina</MenuItem>
         </SubMenu>
-        <Menu.Item key="7" icon={<ReadOutlined />}>
-          Libros
-        </Menu.Item>
+        <MenuItem icon={<ReadOutlined />}>Libros</MenuItem>
 
-        <SubMenu key="sub4" icon={<UserOutlined />} title="Administración">
-          <Menu.Item key="8">Usuarios</Menu.Item>
+        <SubMenu icon={<UserOutlined />} title="Administración">
+          <MenuItem>Usuarios</MenuItem>
         </SubMenu>
       </Menu>
-    </Sider>
+
+      <div
+        className="d-flex justify-content-center trigger-menu"
+        onClick={() => setToggle(!toggle)}
+      >
+        {toggle ? <RightOutlined /> : <LeftOutlined />}
+      </div>
+    </ProSidebar>
   );
 };
 
