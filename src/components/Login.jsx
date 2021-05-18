@@ -1,10 +1,12 @@
 import UnidigitalLogo from "../assets/img/unidigital_logo.png";
-
+import { useHistory } from "react-router";
 import { Input, Form, Checkbox, Button } from "antd";
 
 const Login = () => {
-  const handleSubmit = (e) => {
+  const history = useHistory();
+  const handleSubmit = () => {
     console.log("sirve");
+    history.push("/desktop");
   };
 
   return (

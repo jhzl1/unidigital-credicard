@@ -1,0 +1,51 @@
+$sidebar-bg-color: linear-gradient(
+  0deg,
+  rgba(46, 64, 83, 1) 0%,
+  rgba(93, 109, 126, 1) 100%
+);
+
+$icon-bg-color: transparent;
+$sidebar-color: #bfc9ca;
+$submenu-bg-color: #ffffff1a;
+$highlight-color: #f2f3f4;
+@import "~react-pro-sidebar/dist/scss/styles.scss";
+
+$border: 1px solid blue;
+
+.prueba {
+  border: $border;
+}
+
+.anticon svg {
+  margin-bottom: 5px;
+}
+
+.logo-menu {
+  height: 45px;
+  margin: 16px;
+}
+
+.react-slidedown .pro-inner-list-item {
+  div {
+    ul {
+      li {
+        content: none;
+      }
+    }
+  }
+}
+
+.pro-icon {
+  background-color: #ffffff1a;
+  border-radius: 50px;
+  padding-top: 5px;
+}
+.trigger-menu {
+  background-color: #ffffff1a;
+  cursor: pointer;
+  padding: 18px;
+}
+
+.header-desktop {
+  width: 100%;
+}
