@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Router>
         <Switch>
           <Route exact path="/login" component={Login} />
@@ -22,7 +22,7 @@ function App() {
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
-    </div>
+    </>
   );
 }
 

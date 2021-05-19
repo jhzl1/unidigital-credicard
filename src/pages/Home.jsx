@@ -3,7 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const Home = () => {
   return (
-    <div className="mx-3 my-5 p-4 desktop-container">
+    <div className="my-5 p-4 desktop-container">
       <Breadcrumb className="mb-3">
         <Breadcrumb.Item>Inicio</Breadcrumb.Item>
       </Breadcrumb>

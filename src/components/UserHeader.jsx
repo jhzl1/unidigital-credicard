@@ -26,8 +26,8 @@ const UserHeader = ({ user }) => {
     </Menu>
   );
   return (
-    <Dropdown overlay={menu}>
-      <Button>Usuario: {user}</Button>
+    <Dropdown overlay={menu} className="mt-2">
+      <Button>{user}</Button>
     </Dropdown>
   );
 };
