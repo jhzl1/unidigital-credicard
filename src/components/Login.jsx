@@ -6,7 +6,7 @@ const Login = () => {
   const history = useHistory();
   const handleSubmit = () => {
     console.log("sirve");
-    history.push("/desktop");
+    history.push("/home");
   };
 
   return (

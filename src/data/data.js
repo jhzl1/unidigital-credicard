@@ -50,11 +50,54 @@ export const columnsSearchByNumber = [
     key: "action",
     render: (text, record) => (
       <Space size="middle">
-        <a href="#">
+        <a href="/">
           Ver en PDF
           <FilePdfOutlined style={{ color: "red" }} />
         </a>
       </Space>
     ),
+  },
+];
+
+export const dataExample = [
+  {
+    key: "1",
+    tipe: "01",
+    serie: "C",
+    numberDoc: "0000002272",
+    numberControl: "492093",
+    date: "18/05/21",
+    customer: "EL CHIVO MEÓN 1000 C.A.",
+    total: "4.606.589,08",
+  },
+  {
+    key: "2",
+    tipe: "01",
+    serie: "C",
+    numberDoc: "0000002272",
+    numberControl: "492093",
+    date: "18/05/21",
+    customer: "EL CHIVO MEÓN 1000 C.A.",
+    total: "4.606.589,08",
+  },
+  {
+    key: "3",
+    tipe: "01",
+    serie: "C",
+    numberDoc: "0000002272",
+    numberControl: "492093",
+    date: "18/05/21",
+    customer: "EL CHIVO MEÓN 1000 C.A.",
+    total: "4.606.589,08",
+  },
+  {
+    key: "4",
+    tipe: "01",
+    serie: "C",
+    numberDoc: "0000002272",
+    numberControl: "492093",
+    date: "18/05/21",
+    customer: "EL CHIVO MEÓN 1000 C.A.",
+    total: "4.606.589,08",
   },
 ];

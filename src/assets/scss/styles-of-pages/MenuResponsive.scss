@@ -13,12 +13,25 @@
   color: #d1d1d1;
   transition: color 0.2s;
   &:hover {
-    color: white;
+    color: rgb(194, 194, 194);
+  }
+  .card {
+    background-color: transparent !important;
+    cursor: pointer;
+    .card-header {
+      .anticon {
+        vertical-align: 0px;
+      }
+    }
   }
 }
+
 .bm-item-list {
   color: #b8b7ad;
   height: auto !important;
+  &:hover {
+    color: white;
+  }
 }
 .bm-burger-button {
   display: block;

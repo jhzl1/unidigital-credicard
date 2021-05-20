@@ -11,59 +11,66 @@ import {
   LeftOutlined,
 } from "@ant-design/icons";
 import LogoTransparent from "../assets/img/unidigital-logo-color.png";
-import MenuResponsive from "./MenuResponsive";
 
 const MenuDesktop = () => {
   const [toggle, setToggle] = useState(true);
   return (
-    <>
-      <MenuResponsive display="d-none" />
-      <ProSidebar
-        collapsed={toggle}
-        className="d-none d-sm-none d-md-none d-lg-block"
+    <ProSidebar
+      collapsed={toggle}
+      className="d-none d-sm-none d-md-none d-lg-block"
+    >
+      <Link to="/home">
+        <img
+          src={LogoTransparent}
+          alt=""
+          style={{ width: "50px" }}
+          className="logo-menu"
+        />
+      </Link>
+      <Menu iconShape="square" style={{ minHeight: "84vh" }}>
+        <SubMenu icon={<FileOutlined />} title="Documentos" className="submenu">
+          <MenuItem>
+            <Link to="/documents/SearchByNumber">Número de documento</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/documents/SearchByControl">Número de control</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/documents/SearchByFiscalRegistry">RIF o cédula</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/documents/SearchByProduct">Tipo de Documento</Link>
+          </MenuItem>
+        </SubMenu>
+        <SubMenu icon={<FundOutlined />} title="Ciclos">
+          <MenuItem>
+            <Link to="/BatchList">Listas</Link>
+          </MenuItem>
+        </SubMenu>
+        <SubMenu icon={<BarChartOutlined />} title="Indicadores">
+          <MenuItem>Por Archivo / Oficina</MenuItem>
+        </SubMenu>
+
+        <SubMenu icon={<ReadOutlined />} title="Libros">
+          <MenuItem>
+            <Link to="/SearchBook">Buscar</Link>
+          </MenuItem>
+        </SubMenu>
+
+        <SubMenu icon={<UserOutlined />} title="Administración">
+          <MenuItem>
+            <Link to="/Admin">Usuarios</Link>
+          </MenuItem>
+        </SubMenu>
+      </Menu>
+
+      <div
+        className="d-flex justify-content-center trigger-menu"
+        onClick={() => setToggle(!toggle)}
       >
-        <Link to="/home">
-          <img
-            src={LogoTransparent}
-            alt=""
-            style={{ width: "50px" }}
-            className="logo-menu"
-          />
-        </Link>
-        <Menu iconShape="square" style={{ minHeight: "84vh" }}>
-          <SubMenu
-            icon={<FileOutlined />}
-            title="Documentos"
-            className="submenu"
-          >
-            <MenuItem>
-              <Link to="/documents/SearchByNumber">Número de documento</Link>
-            </MenuItem>
-            <MenuItem>Número de control</MenuItem>
-            <MenuItem>RIF o cédula</MenuItem>
-            <MenuItem>Tipo de Documento</MenuItem>
-          </SubMenu>
-          <SubMenu icon={<FundOutlined />} title="Ciclos">
-            <MenuItem>Listas</MenuItem>
-          </SubMenu>
-          <SubMenu icon={<BarChartOutlined />} title="Indicadores">
-            <MenuItem>Por Archivo / Oficina</MenuItem>
-          </SubMenu>
-          <MenuItem icon={<ReadOutlined />}>Libros</MenuItem>
-
-          <SubMenu icon={<UserOutlined />} title="Administración">
-            <MenuItem>Usuarios</MenuItem>
-          </SubMenu>
-        </Menu>
-
-        <div
-          className="d-flex justify-content-center trigger-menu"
-          onClick={() => setToggle(!toggle)}
-        >
-          {toggle ? <RightOutlined /> : <LeftOutlined />}
-        </div>
-      </ProSidebar>
-    </>
+        {toggle ? <RightOutlined /> : <LeftOutlined />}
+      </div>
+    </ProSidebar>
   );
 };
 

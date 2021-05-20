@@ -1,66 +1,24 @@
 import { useState } from "react";
-import { Breadcrumb, Cascader, InputNumber, Table } from "antd";
-import { dataSearchByNumber, columnsSearchByNumber } from "../data/data";
+import { Cascader, InputNumber, Table } from "antd";
+import {
+  dataSearchByNumber,
+  columnsSearchByNumber,
+  dataExample,
+} from "../data/data";
 import { Container, Row, Col } from "react-bootstrap";
+import BreadcrumbSearchByDocNumber from "./BreadcrumbSearchByDocNumber";
 
 const SearchNumberDoc = () => {
-  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isDataLoaded, setIsDataLoaded] = useState(true);
   const submitSearchByDocNumber = (e) => {
     e.preventDefault();
   };
-
-  const data = [
-    {
-      key: "1",
-      tipe: "01",
-      serie: "C",
-      numberDoc: "0000002272",
-      numberControl: "492093",
-      date: "18/05/21",
-      customer: "EL CHIVO MEÓN 1000 C.A.",
-      total: "4.606.589,08",
-    },
-    {
-      key: "2",
-      tipe: "01",
-      serie: "C",
-      numberDoc: "0000002272",
-      numberControl: "492093",
-      date: "18/05/21",
-      customer: "EL CHIVO MEÓN 1000 C.A.",
-      total: "4.606.589,08",
-    },
-    {
-      key: "3",
-      tipe: "01",
-      serie: "C",
-      numberDoc: "0000002272",
-      numberControl: "492093",
-      date: "18/05/21",
-      customer: "EL CHIVO MEÓN 1000 C.A.",
-      total: "4.606.589,08",
-    },
-    {
-      key: "4",
-      tipe: "01",
-      serie: "C",
-      numberDoc: "0000002272",
-      numberControl: "492093",
-      date: "18/05/21",
-      customer: "EL CHIVO MEÓN 1000 C.A.",
-      total: "4.606.589,08",
-    },
-  ];
 
   return (
     <Container className="my-5 p-4 desktop-container" fluid>
       <Row>
         <Col>
-          <Breadcrumb className="mb-3">
-            <Breadcrumb.Item>Inicio</Breadcrumb.Item>
-            <Breadcrumb.Item>Documentos</Breadcrumb.Item>
-            <Breadcrumb.Item>Buscar por número de documento</Breadcrumb.Item>
-          </Breadcrumb>
+          <BreadcrumbSearchByDocNumber />
         </Col>
       </Row>
 
@@ -87,13 +45,16 @@ const SearchNumberDoc = () => {
       </Row>
       <Row>
         <Col>
-          <Table
-            columns={columnsSearchByNumber}
-            dataSource={data}
-            className="mt-4 table"
-            scroll={{ x: "max-content" }}
-            pagination={{ position: "bottomCenter" }}
-          />
+          {isDataLoaded ? (
+            <Table
+              columns={columnsSearchByNumber}
+              dataSource={dataExample}
+              className="mt-4 table"
+              scroll={{ x: "max-content" }}
+            />
+          ) : (
+            ""
+          )}
         </Col>
       </Row>
     </Container>
