@@ -51,6 +51,7 @@ const SearchNumberDoc = () => {
               dataSource={dataExample}
               className="mt-4 table"
               scroll={{ x: "max-content" }}
+              size="small"
             />
           ) : (
             ""

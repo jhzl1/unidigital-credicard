@@ -16,10 +16,6 @@ const Home = () => {
           realiza búsqueda por Cédula/Rif, Tipo de Documento y Fechas. También
           puedes generar los Libros de Ventas
         </p>
-
-        <button className="btn-dark" type="button">
-          <SearchOutlined /> Buscar
-        </button>
       </div>
     </div>
   );

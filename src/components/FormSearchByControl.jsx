@@ -13,7 +13,7 @@ const FormSearchByControl = () => {
 
   return (
     <>
-      <h4>Parámetros de busqueda</h4>
+      <h4>Parámetros de búsqueda</h4>
       <form onSubmit={handleSubmit}>
         <Cascader
           options={dataSearchByNumber}
@@ -23,7 +23,6 @@ const FormSearchByControl = () => {
 
         <InputNumber
           min={1}
-          max={10}
           placeholder="Introduzca número de documento"
           className="me-3 input-default"
         />

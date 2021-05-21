@@ -5,21 +5,23 @@ import { Container, Row, Col } from "react-bootstrap";
 
 const ContentDesktop = ({ childrens }) => {
   return (
-    <Container fluid className="my-3 ">
-      <Row>
-        <Col>
+    <Container className="ps-0 pe-0" fluid>
+      <Row className="m-0">
+        <Col className="header-desktop p-2">
           <img
             src={CredicardLogo}
             height="50"
             width="160px"
             alt="Credicard"
-            className="me-3"
+            className="ms-4 me-3"
           />
           <UserHeader user="Mi Perfil" />
         </Col>
       </Row>
+      <Row className="mx-3">
+        <Col>{childrens}</Col>
+      </Row>
 
-      {childrens}
       <ContentFooter />
     </Container>
   );
