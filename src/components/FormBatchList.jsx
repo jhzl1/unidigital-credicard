@@ -32,6 +32,7 @@ const FormBatchList = () => {
         columns={columnsBatchList}
         dataSource={dataExampleBatchList}
         className="mt-4 table"
+        size="small"
         scroll={{ x: "max-content" }}
       />
     </>

@@ -7,7 +7,7 @@
 #root {
   background: #e5e8e8 center center/cover;
   min-height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
 }
 
 * {
@@ -16,4 +16,18 @@
 
 .ant-cascader-menu {
   height: auto !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px; /* Tamaño del scroll en vertical */
+  height: 8px; /* Tamaño del scroll en horizontal */
+  background-color: #ccd1d1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7f8c8d;
+  border-radius: 4px;
+  &:hover {
+    background: #515a5a;
+  }
 }

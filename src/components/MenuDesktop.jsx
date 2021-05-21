@@ -27,7 +27,7 @@ const MenuDesktop = () => {
           className="logo-menu"
         />
       </Link>
-      <Menu iconShape="square" style={{ minHeight: "84vh" }}>
+      <Menu iconShape="square" style={{ minHeight: "100vh" }}>
         <SubMenu icon={<FileOutlined />} title="Documentos" className="submenu">
           <MenuItem>
             <Link to="/documents/SearchByNumber">Número de documento</Link>
@@ -65,7 +65,7 @@ const MenuDesktop = () => {
       </Menu>
 
       <div
-        className="d-flex justify-content-center trigger-menu"
+        className="d-flex justify-content-center trigger-menu "
         onClick={() => setToggle(!toggle)}
       >
         {toggle ? <RightOutlined /> : <LeftOutlined />}

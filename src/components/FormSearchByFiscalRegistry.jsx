@@ -47,6 +47,7 @@ const FormSearchByFiscalRegistry = () => {
         columns={columnsSearchByNumber}
         dataSource={dataExample}
         className="mt-4 table"
+        size="small"
         scroll={{ x: "max-content" }}
       />
     </>
