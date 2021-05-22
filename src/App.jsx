@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Desktop from "./components/Desktop";
 import NotFound from "./pages/NotFound";
-import SearchNumberDoc from "./components/SearchNumberDoc";
 import Home from "./pages/Home";
 import SearchByControl from "./pages/SearchByControl";
 import SearchByFiscalRegistry from "./pages/SearchByFiscalRegistry";
@@ -10,6 +9,7 @@ import SearchByProduct from "./pages/SearchByProduct";
 import BatchList from "./pages/BatchList";
 import SearchBook from "./pages/SearchBook";
 import AdminPage from "./pages/AdminPage";
+import SearchByDocNumber from "./pages/SearchByDocNumber";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <Route
               exact
               path="/documents/SearchByNumber"
-              component={SearchNumberDoc}
+              component={SearchByDocNumber}
             />
             <Route
               exact

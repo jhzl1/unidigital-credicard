@@ -59,7 +59,7 @@ export const validationSchema = Yup.object({
     .required("Ingrese un nombre")
     .min(3, "El nombre es muy corto"),
   surname: Yup.string().required("Ingrese un apellido"),
-  group: Yup.array().required("Seleccione un grupo"),
+  group: Yup.string().required("Seleccione un grupo"),
 });
 
 export const initialValues = {

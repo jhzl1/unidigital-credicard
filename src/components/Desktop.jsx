@@ -5,6 +5,7 @@ import CredicardLogo from "../assets/img/credicard_logo2.png";
 import UserHeader from "./UserHeader";
 import ContentFooter from "../components/ContentFooter";
 import { Divider } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 const Desktop = ({ children }) => {
   return (
@@ -30,6 +31,8 @@ const Desktop = ({ children }) => {
                   userSurname="Campos"
                   role="Supervisor"
                 />
+
+                <QuestionCircleOutlined />
               </Col>
             </Row>
             <Row className="mx-3">

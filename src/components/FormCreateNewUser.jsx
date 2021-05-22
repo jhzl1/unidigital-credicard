@@ -1,5 +1,5 @@
 import { Formik, Form as FormFormik } from "formik";
-import { Cascader, Form, Input, ResetButton, SubmitButton } from "formik-antd";
+import { Form, Input, ResetButton, SubmitButton, Select } from "formik-antd";
 import {
   gruopsUser,
   initialValues,
@@ -9,6 +9,8 @@ import { useCallback } from "react";
 import { message } from "antd";
 
 const FormCreateNewUser = () => {
+  const { Option } = Select;
+
   const handleSubmit = useCallback(async (data, { resetForm }) => {
     setTimeout(() => {
       try {
@@ -26,9 +28,7 @@ const FormCreateNewUser = () => {
       <h4>Crear nuevo usuario</h4>
       <Formik
         initialValues={initialValues}
-        onSubmit={(FormData, { resetForm }) => {
-          handleSubmit(FormData, { resetForm });
-        }}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <FormFormik>
@@ -53,16 +53,15 @@ const FormCreateNewUser = () => {
           <Form.Item name="surname">
             <Input name="surname" placeholder="Ingrese apellido" />
           </Form.Item>
-          <Form.Item name="surname">
-            <Input name="surname" placeholder="Ingrese apellido" />
-          </Form.Item>
+
           <Form.Item name="group">
-            <Cascader
-              name="group"
-              options={gruopsUser}
-              placeholder="Seleccione un grupo"
-              className="w-100"
-            />
+            <Select name="group" placeholder="Seleccione un grupo">
+              {gruopsUser.map((item, index) => (
+                <Option value={item.value} key={index}>
+                  {item.label}
+                </Option>
+              ))}
+            </Select>
           </Form.Item>
 
           <SubmitButton className="me-3">Crear usuario</SubmitButton>

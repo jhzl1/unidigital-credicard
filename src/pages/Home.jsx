@@ -1,5 +1,4 @@
 import { Breadcrumb } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
 
 const Home = () => {
   return (

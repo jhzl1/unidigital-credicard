@@ -1,19 +1,20 @@
+import { Form, Input, SubmitButton, Select } from "formik-antd";
 import { dataSearchByNumber } from "../data/data";
 import { Formik, Form as FormFormik } from "formik";
-import { Form, Input, SubmitButton, Select } from "formik-antd";
-import { validationSearchByControl } from "../data/dataSearchByControl";
+import { validationSearchByDocNumber } from "../data/dataFormSearchByDocNumber";
 
-const FormSearchByControl = ({ handleSubmit }) => {
+const FormSearchByDocNumber = ({ handleSubmit }) => {
   const { Option } = Select;
+
   return (
     <>
       <h4>Parámetros de búsqueda</h4>
       <Formik
         initialValues={{
           bussines: "",
-          numberControl: "",
+          numberDocument: "",
         }}
-        validationSchema={validationSearchByControl}
+        validationSchema={validationSearchByDocNumber}
         onSubmit={(data, { resetForm }) => handleSubmit(data, { resetForm })}
       >
         <FormFormik className=" d-flex">
@@ -26,10 +27,10 @@ const FormSearchByControl = ({ handleSubmit }) => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="numberControl" className="w-25 me-2">
+          <Form.Item name="numberDocument" className="w-25 me-2">
             <Input
-              name="numberControl"
-              placeholder="Introduzca número de Control"
+              name="numberDocument"
+              placeholder="Introduzca número de documento"
             />
           </Form.Item>
 
@@ -40,4 +41,4 @@ const FormSearchByControl = ({ handleSubmit }) => {
   );
 };
 
-export default FormSearchByControl;
+export default FormSearchByDocNumber;

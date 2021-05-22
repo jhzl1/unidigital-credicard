@@ -1,29 +1,29 @@
+import FormSearchByDocNumber from "../components/FormSearchByDocNumber";
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbSearchByProduct from "../components/BreadcrumbSearchByProduct";
-import FormSearchByProduct from "../components/FormSearchByProduct";
+import BreadcrumbSearchByDocNumber from "../components/BreadcrumbSearchByDocNumber";
 import { Table } from "antd";
 import { columnsSearchByNumber, dataExample } from "../data/data";
-import { useState } from "react";
 
-const SearchByProduct = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const handleSubmit = (data) => {
-    console.log(data);
-    setIsLoading(true);
+const SearchByDocNumber = () => {
+  const handleSubmit = async (data, { resetForm }) => {
+    try {
+      console.log(data);
+
+      resetForm();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>
         <Col>
-          <BreadcrumbSearchByProduct />
+          <BreadcrumbSearchByDocNumber />
         </Col>
       </Row>
       <Row>
         <Col>
-          <FormSearchByProduct
-            handleSubmit={handleSubmit}
-            isLoading={isLoading}
-          />
+          <FormSearchByDocNumber handleSubmit={handleSubmit} />
         </Col>
       </Row>
       <Row>
@@ -32,8 +32,8 @@ const SearchByProduct = () => {
             columns={columnsSearchByNumber}
             dataSource={dataExample}
             className="mt-4 table"
-            size="small"
             scroll={{ x: "max-content" }}
+            size="small"
           />
         </Col>
       </Row>
@@ -41,4 +41,4 @@ const SearchByProduct = () => {
   );
 };
 
-export default SearchByProduct;
+export default SearchByDocNumber;
