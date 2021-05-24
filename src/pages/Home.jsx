@@ -1,4 +1,5 @@
 import { Breadcrumb } from "antd";
+import { getData } from "../services/api";
 
 const Home = () => {
   return (
@@ -15,6 +16,10 @@ const Home = () => {
           realiza búsqueda por Cédula/Rif, Tipo de Documento y Fechas. También
           puedes generar los Libros de Ventas
         </p>
+        {/* 
+        <button className="btn-primary" onClick={getData}>
+          Prueba
+        </button> */}
       </div>
     </div>
   );
