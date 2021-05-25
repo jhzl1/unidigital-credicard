@@ -3,13 +3,18 @@ import { Container, Row, Col } from "react-bootstrap";
 import BreadcrumbSearchByDocNumber from "../components/BreadcrumbSearchByDocNumber";
 import { Table } from "antd";
 import { columnsSearchByNumber, dataExample } from "../data/data";
+import { useState } from "react";
+import { sendData } from "../services/api";
 
 const SearchByDocNumber = () => {
+  const [dataTable, setDataTable] = useState([]);
+
   const handleSubmit = async (data, { resetForm }) => {
     try {
-      console.log(data);
-
-      resetForm();
+      const reData = JSON.stringify(data);
+      console.log(reData);
+      const res = await sendData("/documents/searchbynumber", reData);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -19,22 +24,16 @@ const SearchByDocNumber = () => {
       <Row>
         <Col>
           <BreadcrumbSearchByDocNumber />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           <FormSearchByDocNumber handleSubmit={handleSubmit} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Table
+
+          {/*  <Table
             columns={columnsSearchByNumber}
             dataSource={dataExample}
             className="mt-4 table"
             scroll={{ x: "max-content" }}
             size="small"
-          />
+          /> */}
         </Col>
       </Row>
     </Container>

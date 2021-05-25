@@ -48,7 +48,11 @@ const MenuDesktop = () => {
           </MenuItem>
         </SubMenu>
         <SubMenu icon={<BarChartOutlined />} title="Indicadores">
-          <MenuItem>Por Archivo / Oficina</MenuItem>
+          <MenuItem>
+            <Link to="/statistics/SearchBatchs" className="bm-item-list">
+              Por Archivo / Oficina
+            </Link>
+          </MenuItem>
         </SubMenu>
 
         <SubMenu icon={<ReadOutlined />} title="Libros">

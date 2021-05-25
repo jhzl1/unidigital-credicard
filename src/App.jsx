@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/Login";
 import Desktop from "./components/Desktop";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
@@ -10,6 +9,8 @@ import BatchList from "./pages/BatchList";
 import SearchBook from "./pages/SearchBook";
 import AdminPage from "./pages/AdminPage";
 import SearchByDocNumber from "./pages/SearchByDocNumber";
+import Login from "./pages/Login";
+import SearchBatch from "./components/SearchBatch";
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
             <Route exact path="/BatchList" component={BatchList} />
             <Route exact path="/SearchBook" component={SearchBook} />
             <Route exact path="/Admin" component={AdminPage} />
+            <Route
+              exact
+              path="/statistics/SearchBatchs"
+              component={SearchBatch}
+            />
           </Desktop>
           <Route path="*" component={NotFound} />
         </Switch>

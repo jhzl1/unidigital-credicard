@@ -1,44 +1,41 @@
 import { dataSearchByNumber } from "../data/data";
-import { Formik, Form as FormFormik } from "formik";
-import {
-  initialValues,
-  validationSearchByFiscalRegistry,
-} from "../data/dataSearchByFiscalRegistry";
-import { Form, Input, SubmitButton, Select, DatePicker } from "formik-antd";
+import { Formik } from "formik";
+import { validationSearchByFiscalRegistry } from "../data/dataSearchByFiscalRegistry";
+import { Form, Input, Select, DatePicker } from "formik-antd";
 import locale from "antd/lib/locale/es_ES";
-import { ConfigProvider } from "antd";
-import moment from "moment";
-import { DatePicker as DatePickerDefault } from "antd";
+import { ConfigProvider, Button } from "antd";
 import { useState } from "react";
 
 const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
-  const [dateState, setDateState] = useState("");
+  const [data, setData] = useState({
+    companies: null,
+    fiscalRegistry: null,
+    dateFrom: null,
+    dateTo: null,
+  });
+  const handleChangeData = (key, value) => {
+    setData({
+      ...data,
+      [key]: value,
+    });
+  };
+
   const { Option } = Select;
-  const dateFormat = moment().format("L");
-  const handleChange = (dateString) => {
-    console.log(dateString);
-  };
-
-  const preSubmit = (data) => {
-    const arreglo = data.push({ fecha: dateState });
-    console.log(arreglo);
-  };
-
-  function onChange(date, dateString) {
-    console.log(dateString);
-  }
-
   return (
     <ConfigProvider locale={locale}>
       <h4>Parámetros de búsqueda</h4>
       <Formik
-        initialValues={initialValues}
+        initialValues={data}
         validationSchema={validationSearchByFiscalRegistry}
-        onSubmit={preSubmit}
+        onSubmit={() => handleSubmit(data)}
       >
-        <FormFormik className=" d-flex">
-          <Form.Item name="bussines" className="w-25 me-2">
-            <Select name="bussines" placeholder="Seleccione una empresa">
+        <Form className="d-flex">
+          <Form.Item name="companies" className="w-25 me-2">
+            <Select
+              name="companies"
+              placeholder="Seleccione una empresa"
+              onChange={(value) => handleChangeData("companies", value)}
+            >
               {dataSearchByNumber.map((item, index) => (
                 <Option value={item.value} key={index}>
                   {item.label}
@@ -49,32 +46,41 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
           <Form.Item name="fiscalRegistry" className="w-25 me-2">
             <Input
               name="fiscalRegistry"
-              placeholder="Introduzca RIF o cédula"
+              placeholder="Introduzca RIF o Cédula"
+              onChange={(e) =>
+                handleChangeData("fiscalRegistry", e.target.value)
+              }
             />
           </Form.Item>
 
-          <Form.Item name="dateEmisionFrom" className="w-25 me-2">
+          <Form.Item name="dateFrom" className="w-25 me-2">
             <DatePicker
-              format="DD-MM-YYYY"
-              name="dateEmisionFrom"
+              name="dateFrom"
               placeholder="Fecha emisión (Desde)"
               className="me-3 w-100"
-              onChange={onChange}
+              format="DD-MM-YYYY"
+              onChange={(date, dateString) =>
+                handleChangeData("dateFrom", dateString)
+              }
             />
           </Form.Item>
-          <Form.Item name="dateEmisionTo" className="w-25 me-2">
+          <Form.Item name="dateTo" className="w-25 me-2">
             <DatePicker
-              name="dateEmisionTo"
+              name="dateTo"
               placeholder="Fecha emisión (Hasta)"
               className="me-3 w-100"
+              format="DD-MM-YYYY"
+              onChange={(date, dateString) =>
+                handleChangeData("dateTo", dateString)
+              }
             />
           </Form.Item>
 
-          <SubmitButton className="me-3">Buscar</SubmitButton>
-        </FormFormik>
+          <Button type="primary" htmlType="submit">
+            Buscar
+          </Button>
+        </Form>
       </Formik>
-
-      <DatePickerDefault onChange={onChange} format="DD-MM-YYYY" />
     </ConfigProvider>
   );
 };

@@ -5,30 +5,30 @@ import { DownOutlined } from "@ant-design/icons";
 
 const UserHeader = ({ userName, userSurname, role }) => {
   const [changeColorAvatar, setChangeColorAvatar] = useState({});
-  const setColorAvatar = () => {
-    const typeRole = role;
-    if (typeRole === "Administrador") {
-      setChangeColorAvatar({
-        backgroundColor: "#f56a00",
-      });
-    } else if (typeRole === "User") {
-      setChangeColorAvatar({
-        backgroundColor: "#7265e6",
-      });
-    } else {
-      setChangeColorAvatar({
-        backgroundColor: "#ffbf00",
-      });
-    }
-  };
 
   useEffect(() => {
+    const setColorAvatar = () => {
+      const typeRole = role;
+      if (typeRole === "Administrador") {
+        setChangeColorAvatar({
+          backgroundColor: "#f56a00",
+        });
+      } else if (typeRole === "User") {
+        setChangeColorAvatar({
+          backgroundColor: "#7265e6",
+        });
+      } else {
+        setChangeColorAvatar({
+          backgroundColor: "#ffbf00",
+        });
+      }
+    };
     setColorAvatar();
-  }, []);
+  }, [role]);
 
   const menu = (
     <Menu>
-      <div className="d-flex flex-column">
+      <div className=" d-flex flex-column ">
         <span className="ms-2 me-2 fs-5 text-center">
           {userName} {userSurname}
         </span>
@@ -53,7 +53,7 @@ const UserHeader = ({ userName, userSurname, role }) => {
     </Menu>
   );
   return (
-    <Dropdown overlay={menu} className="mt-2">
+    <Dropdown overlay={menu} className="mt-2 float-end me-3">
       <a
         className="ant-dropdown-link"
         onClick={(e) => e.preventDefault()}

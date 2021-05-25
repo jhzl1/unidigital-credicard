@@ -1,12 +1,13 @@
-import { DatePicker, Select, Form, SubmitButton } from "formik-antd";
-import { useCallback, useState } from "react";
+import { DatePicker, Select, Form } from "formik-antd";
+import { useState } from "react";
 import { dataSearchByNumber, typeOfDocument } from "../data/data";
 import { Formik } from "formik";
 import { validationSearchByProduct } from "../data/dataSearchByProduct";
+import { Button } from "antd";
 
 const FormSearchByProduct = ({ handleSubmit }) => {
   const [data, setData] = useState({
-    bussiness: null,
+    companies: null,
     typeOfDocument: null,
     dateFrom: null,
     dateTo: null,
@@ -21,29 +22,20 @@ const FormSearchByProduct = ({ handleSubmit }) => {
     });
   };
 
-  const preSubmit = useCallback(
-    (data, { resetForm }) => {
-      handleSubmit(data);
-      setTimeout(() => {
-        resetForm();
-      }, 2000);
-    },
-    [handleSubmit]
-  );
   return (
     <>
       <h4>Parámetros de búsqueda</h4>
       <Formik
         initialValues={data}
         validationSchema={validationSearchByProduct}
-        onSubmit={preSubmit}
+        onSubmit={() => handleSubmit(data)}
       >
         <Form className="d-flex">
-          <Form.Item name="bussiness" className="w-25 me-2">
+          <Form.Item name="companies" className="w-25 me-2">
             <Select
-              name="bussiness"
+              name="companies"
               placeholder="Seleccione una empresa"
-              onChange={(value) => handleChangeData("bussiness", value)}
+              onChange={(value) => handleChangeData("companies", value)}
             >
               {dataSearchByNumber.map((item, index) => (
                 <Option value={item.value} key={index}>
@@ -89,7 +81,9 @@ const FormSearchByProduct = ({ handleSubmit }) => {
             />
           </Form.Item>
 
-          <SubmitButton>Buscar</SubmitButton>
+          <Button type="primary" htmlType="submit">
+            Buscar
+          </Button>
         </Form>
       </Formik>
     </>

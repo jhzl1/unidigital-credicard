@@ -1,43 +1,68 @@
 import axios from "axios";
 
-const baseUrl =
+export const baseUrl =
   "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api";
 
-/* const httpInstance = axios.create({
-  baseURL: "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api",
-}); */
-
-export default axios.create({
+export const httpInstance = axios.create({
   baseURL: "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api",
 });
 
-const credicard_facturacion_jwt =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImNyZWRpY2FyZF9kaWdpdGFsaW52b2ljZUB1bmlkaWdpdGFsLmdsb2JhbCIsIm5iZiI6MTYyMTY2MjUwNCwiZXhwIjoxNjIxNjY0MzA0LCJpYXQiOjE2MjE2NjI1MDQsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM1LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM1LyJ9.mlqoXYiKJOmaQmaBYpr41Qp68JbC4QQjhag5dkHpjYQ";
-
-const datados = {
-  userName: "credicard_digitalinvoice@unidigital.global",
-  accessToken:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImNyZWRpY2FyZF9kaWdpdGFsaW52b2ljZUB1bmlkaWdpdGFsLmdsb2JhbCIsIm5iZiI6MTYyMTY2MjA2NiwiZXhwIjoxNjIxNjYzODY2LCJpYXQiOjE2MjE2NjIwNjYsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM1LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjQ0MzM1LyJ9.kE4xznOMqhNrJM-slUSeDHV3akCvyHea6E4a4mZrkxQ",
-  refreshToken: "",
-  errors: [],
-  success: [],
-  warning: [],
-  information: [],
-  hasErrors: false,
-};
-
-axios.interceptors.request.use(
-  (config) => {
-    config.headers.authorization = credicard_facturacion_jwt;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-export const getData = async () => {
+export const loginApi = async (url) => {
+  console.log("paso por aqui");
   await axios
-    .get(`${baseUrl}/products/list`)
-    .then((response) => console.log(response))
+    .post(`${baseUrl}${url}`, {
+      UserName: "credicard_digitalinvoice@unidigital.global",
+      Password: "MHk8YaR2xrsfu",
+    })
+    .then((response) => localStorage.setItem("jwt", response.data.accessToken))
     .catch((error) => console.log(error));
 };
+
+const sessionToken = localStorage.getItem("jwt");
+
+export async function getData(url) {
+  try {
+    const response = await axios.get(`${baseUrl}${url}`, {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+/* export async function sendData(url, data) {
+  try {
+    const dataEnviada = await axios.get(`${baseUrl}${url}`, {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    });
+    return dataEnviada;
+  } catch (error) {
+    console.log(error);
+  }
+} */
+
+export async function sendData(data) {
+  var config = {
+    method: "get",
+    url: "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api/documents/searchbynumber",
+    headers: {
+      Authorization: `Bearer ${sessionToken}`,
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+  await axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}

@@ -81,7 +81,11 @@ const MenuResponsive = () => {
             <BarChartOutlined /> Indicadores
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="2">
-            <Card.Body>Por Archivo / Oficina</Card.Body>
+            <Card.Body>
+              <Link to="/statistics/SearchBatchs" className="bm-item-list">
+                Por Archivo / Oficina
+              </Link>
+            </Card.Body>
           </Accordion.Collapse>
         </Card>
         <Card>

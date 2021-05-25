@@ -5,9 +5,8 @@ import { columnsSearchByNumber, dataExample } from "../data/data";
 import { Table } from "antd";
 
 const SearchByFiscalRegistry = () => {
-  const handleSubmit = (data, { resetForm }) => {
+  const handleSubmit = (data) => {
     console.log(data);
-    resetForm();
   };
   return (
     <Container className="desktop-container my-5 p-4" fluid>
