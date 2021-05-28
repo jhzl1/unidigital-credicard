@@ -1,10 +1,8 @@
 import { Breadcrumb } from "antd";
-import { loginApi } from "../services/api";
+
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const url = "/user/login";
-
   return (
     <div className="my-5 p-4 desktop-container">
       <Breadcrumb className="mb-3">
@@ -20,9 +18,6 @@ const Home = () => {
           puedes generar los Libros de Ventas
         </p>
 
-        <button className="btn-primary" onClick={() => loginApi(url)}>
-          Prueba
-        </button>
         <span className="fs-4 mt-5">Accesos rápidos</span>
         <div className="d-flex flex-row">
           <Link

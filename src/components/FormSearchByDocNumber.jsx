@@ -14,13 +14,32 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
   const response = async () => {
     setDisabled(true);
     const getProducts = await getData("/products/list");
+
+    localStorage.setItem("products", JSON.stringify(getProducts.data.products));
+
     setProduct(getProducts.data.products);
+
     const getCompany = await getData("/companies/list");
+    localStorage.setItem(
+      "companiesList",
+      JSON.stringify(getCompany.data.companies)
+    );
+
     setCompany(getCompany.data.companies);
+
     setDisabled(false);
   };
   useEffect(() => {
-    response();
+    if (
+      localStorage.getItem("products") &&
+      localStorage.getItem("companiesList")
+    ) {
+      setProduct(JSON.parse(localStorage.getItem("products")));
+      setCompany(JSON.parse(localStorage.getItem("companiesList")));
+      console.log("paso por aqui");
+    } else {
+      response();
+    }
   }, []);
 
   return (

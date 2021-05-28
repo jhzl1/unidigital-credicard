@@ -1,12 +1,14 @@
 import UnidigitalLogo from "../assets/img/unidigital_logo.png";
 import { useHistory } from "react-router";
 import FormLogin from "../components/FormLogin";
+import { loginApi } from "../services/api";
 
 const Login = () => {
   const history = useHistory();
   const handleSubmit = () => {
     console.log("sirve");
     history.push("/home");
+    loginApi();
   };
 
   return (

@@ -27,13 +27,13 @@ const SearchByDocNumber = () => {
 
           <FormSearchByDocNumber handleSubmit={handleSubmit} />
 
-          {/*  <Table
+          <Table
             columns={columnsSearchByNumber}
             dataSource={dataExample}
             className="mt-4 table"
             scroll={{ x: "max-content" }}
             size="small"
-          /> */}
+          />
         </Col>
       </Row>
     </Container>
