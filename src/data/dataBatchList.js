@@ -5,7 +5,7 @@ export const initialValues = {
   CompanyStrongId: "",
 };
 
-export const validationSearchByControl = Yup.object({
+export const validationBatchList = Yup.object({
   Number: Yup.number()
     .typeError("Solo se admiten números")
     .required("El número de control es requerido"),

@@ -21,18 +21,21 @@ export const loginApi = async () => {
 };
 
 const sessionToken = localStorage.getItem("jwt");
-/* const decode = jwt_decode(sessionToken);
-const timeExpiration = decode.exp;
-const dateNow = new Date().getTime();
-let sumDates = timeExpiration - dateNow;
-const prnrirn = new Date(sumDates).getMinutes();
-const chiave = prnrirn * 60000;
-console.log(chiave);
 
-setTimeout(() => {
+const checkAuthExpire = () => {
+  const decode = jwt_decode(sessionToken);
+  const timeExpiration = decode.exp;
+  const dateNow = new Date().getTime();
+  let sumDates = timeExpiration - dateNow;
+  const prnrirn = new Date(sumDates).getMinutes();
+  const chiave = prnrirn * 60000;
+  console.log(chiave);
+};
+
+/* setTimeout(() => {
   loginApi();
-}, chiave - 10000); 
- */
+}, chiave - 10000); */
+
 export async function getData(url) {
   try {
     const getToken = localStorage.getItem("jwt");

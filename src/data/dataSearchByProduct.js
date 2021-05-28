@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
 export const validationSearchByProduct = Yup.object({
-  companies: Yup.string().required().typeError("Elija una empresa"),
-  typeOfDocument: Yup.string()
+  CompanyStrongId: Yup.string().required().typeError("Elija una empresa"),
+  ProductStrongId: Yup.string()
     .required()
-    .typeError("Escoja un tipo de documento"),
+    .typeError("Elija un tipo de documento"),
 });

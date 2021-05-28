@@ -13,15 +13,9 @@ const SearchByFiscalRegistry = () => {
       <Row>
         <Col>
           <BreadcrumbSearchByFiscalRegistry />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           <FormSearchByFiscalRegistry handleSubmit={handleSubmit} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           <Table
             columns={columnsSearchByNumber}
             dataSource={dataExample}

@@ -1,6 +1,9 @@
 import { Form, Input, SubmitButton, Select } from "formik-antd";
 import { Formik, Form as FormFormik } from "formik";
-import { validationSearchByDocNumber } from "../data/dataFormSearchByDocNumber";
+import {
+  initialValues,
+  validationSearchByDocNumber,
+} from "../data/dataFormSearchByDocNumber";
 import { useEffect, useState } from "react";
 import { getData } from "../services/api";
 
@@ -11,7 +14,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
   const [product, setProduct] = useState([]);
   const [disabled, setDisabled] = useState(false);
 
-  const response = async () => {
+  const getParameters = async () => {
     setDisabled(true);
     const getProducts = await getData("/products/list");
 
@@ -29,6 +32,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
 
     setDisabled(false);
   };
+
   useEffect(() => {
     if (
       localStorage.getItem("products") &&
@@ -38,7 +42,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
       setCompany(JSON.parse(localStorage.getItem("companiesList")));
       console.log("paso por aqui");
     } else {
-      response();
+      getParameters();
     }
   }, []);
 
@@ -46,11 +50,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
     <>
       <h4>Parámetros de búsqueda</h4>
       <Formik
-        initialValues={{
-          Number: "",
-          CompanyStrongId: "",
-          ProductStrongId: "",
-        }}
+        initialValues={initialValues}
         validationSchema={validationSearchByDocNumber}
         onSubmit={(data, { resetForm }) => handleSubmit(data, { resetForm })}
       >

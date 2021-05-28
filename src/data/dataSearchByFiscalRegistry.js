@@ -1,13 +1,15 @@
 import * as Yup from "yup";
 
 export const validationSearchByFiscalRegistry = Yup.object({
-  companies: Yup.string().required().typeError("Seleccione una empresa"),
-  fiscalRegistry: Yup.string().required("El RIF o cédula es requerido"),
+  CompanyStrongId: Yup.string().required().typeError("Elija una empresa"),
+  FiscalRegistry: Yup.string()
+    .required()
+    .typeError("El RIF o cédula es requerido"),
 });
 
 export const initialValues = {
-  companies: "",
-  fiscalRegistry: "",
+  CompanyStrongId: "",
+  FiscalRegistry: "",
   dateEmisionFrom: "",
   dateEmisionTo: "",
 };

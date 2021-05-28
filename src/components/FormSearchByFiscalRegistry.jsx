@@ -1,18 +1,24 @@
-import { dataSearchByNumber } from "../data/data";
 import { Formik } from "formik";
 import { validationSearchByFiscalRegistry } from "../data/dataSearchByFiscalRegistry";
 import { Form, Input, Select, DatePicker } from "formik-antd";
 import locale from "antd/lib/locale/es_ES";
 import { ConfigProvider, Button } from "antd";
 import { useState } from "react";
+import { useEffect } from "react";
+import { getData } from "../services/api";
 
 const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
   const [data, setData] = useState({
-    companies: null,
-    fiscalRegistry: null,
+    CompanyStrongId: null,
+    FiscalRegistry: null,
     dateFrom: null,
     dateTo: null,
   });
+
+  const [company, setCompany] = useState([]);
+
+  const [disabled, setDisabled] = useState(false);
+
   const handleChangeData = (key, value) => {
     setData({
       ...data,
@@ -21,6 +27,29 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
   };
 
   const { Option } = Select;
+
+  const getParameters = async () => {
+    setDisabled(true);
+
+    const getCompany = await getData("/companies/list");
+    localStorage.setItem(
+      "companiesList",
+      JSON.stringify(getCompany.data.companies)
+    );
+
+    setCompany(getCompany.data.companies);
+
+    setDisabled(false);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("companiesList")) {
+      setCompany(JSON.parse(localStorage.getItem("companiesList")));
+    } else {
+      getParameters();
+    }
+  }, []);
+
   return (
     <ConfigProvider locale={locale}>
       <h4>Parámetros de búsqueda</h4>
@@ -30,25 +59,26 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
         onSubmit={() => handleSubmit(data)}
       >
         <Form className="d-flex">
-          <Form.Item name="companies" className="w-25 me-2">
+          <Form.Item name="CompanyStrongId" className="w-25 me-2">
             <Select
-              name="companies"
+              name="CompanyStrongId"
               placeholder="Seleccione una empresa"
-              onChange={(value) => handleChangeData("companies", value)}
+              onChange={(value) => handleChangeData("CompanyStrongId", value)}
+              disabled={disabled}
             >
-              {dataSearchByNumber.map((item, index) => (
-                <Option value={item.value} key={index}>
-                  {item.label}
+              {company.map((item) => (
+                <Option value={item.strongId} key={item.strongId}>
+                  {item.name}
                 </Option>
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="fiscalRegistry" className="w-25 me-2">
+          <Form.Item name="FiscalRegistry" className="w-25 me-2">
             <Input
-              name="fiscalRegistry"
+              name="FiscalRegistry"
               placeholder="Introduzca RIF o Cédula"
               onChange={(e) =>
-                handleChangeData("fiscalRegistry", e.target.value)
+                handleChangeData("FiscalRegistry", e.target.value)
               }
             />
           </Form.Item>

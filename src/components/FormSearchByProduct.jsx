@@ -1,17 +1,20 @@
 import { DatePicker, Select, Form } from "formik-antd";
-import { useState } from "react";
-import { dataSearchByNumber, typeOfDocument } from "../data/data";
+import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { validationSearchByProduct } from "../data/dataSearchByProduct";
 import { Button } from "antd";
+import { getData } from "../services/api";
 
 const FormSearchByProduct = ({ handleSubmit }) => {
   const [data, setData] = useState({
-    companies: null,
-    typeOfDocument: null,
+    CompanyStrongId: null,
+    ProductStrongId: null,
     dateFrom: null,
     dateTo: null,
   });
+  const [company, setCompany] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
   const { Option } = Select;
 
@@ -22,6 +25,37 @@ const FormSearchByProduct = ({ handleSubmit }) => {
     });
   };
 
+  const getParameters = async () => {
+    setDisabled(true);
+    const getProducts = await getData("/products/list");
+
+    localStorage.setItem("products", JSON.stringify(getProducts.data.products));
+
+    setProduct(getProducts.data.products);
+
+    const getCompany = await getData("/companies/list");
+    localStorage.setItem(
+      "companiesList",
+      JSON.stringify(getCompany.data.companies)
+    );
+
+    setCompany(getCompany.data.companies);
+
+    setDisabled(false);
+  };
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("companiesList") &&
+      localStorage.getItem("products")
+    ) {
+      setCompany(JSON.parse(localStorage.getItem("companiesList")));
+      setProduct(JSON.parse(localStorage.getItem("products")));
+    } else {
+      getParameters();
+    }
+  }, []);
+
   return (
     <>
       <h4>Parámetros de búsqueda</h4>
@@ -31,28 +65,30 @@ const FormSearchByProduct = ({ handleSubmit }) => {
         onSubmit={() => handleSubmit(data)}
       >
         <Form className="d-flex">
-          <Form.Item name="companies" className="w-25 me-2">
+          <Form.Item name="CompanyStrongId" className="w-25 me-2">
             <Select
-              name="companies"
+              name="CompanyStrongId"
               placeholder="Seleccione una empresa"
-              onChange={(value) => handleChangeData("companies", value)}
+              onChange={(value) => handleChangeData("CompanyStrongId", value)}
+              disabled={disabled}
             >
-              {dataSearchByNumber.map((item, index) => (
-                <Option value={item.value} key={index}>
-                  {item.label}
+              {company.map((item) => (
+                <Option value={item.strongId} key={item.strongId}>
+                  {item.name}
                 </Option>
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="typeOfDocument" className="w-25 me-2">
+          <Form.Item name="ProductStrongId" className="w-25 me-2">
             <Select
-              name="typeOfDocument"
+              name="ProductStrongId"
               placeholder="Seleccione Tipo de Documento"
-              onChange={(value) => handleChangeData("typeOfDocument", value)}
+              onChange={(value) => handleChangeData("ProductStrongId", value)}
+              disabled={disabled}
             >
-              {typeOfDocument.map((item, index) => (
-                <Option value={item.value} key={index}>
-                  {item.label}
+              {product.map((item) => (
+                <Option value={item.strongId} key={item.strongId}>
+                  {item.name}
                 </Option>
               ))}
             </Select>

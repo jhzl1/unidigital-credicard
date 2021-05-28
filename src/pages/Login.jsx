@@ -5,10 +5,9 @@ import { loginApi } from "../services/api";
 
 const Login = () => {
   const history = useHistory();
-  const handleSubmit = () => {
-    console.log("sirve");
+  const handleSubmit = async () => {
+    await loginApi();
     history.push("/home");
-    loginApi();
   };
 
   return (

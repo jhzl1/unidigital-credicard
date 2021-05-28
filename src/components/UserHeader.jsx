@@ -2,9 +2,16 @@ import { Menu, Dropdown, Divider, Avatar, Badge } from "antd";
 import { KeyOutlined, LoginOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
+import { Link, useHistory } from "react-router-dom";
 
 const UserHeader = ({ userName, userSurname, role }) => {
   const [changeColorAvatar, setChangeColorAvatar] = useState({});
+  const history = useHistory();
+
+  const logout = () => {
+    history.push("/");
+    localStorage.clear();
+  };
 
   useEffect(() => {
     const setColorAvatar = () => {
@@ -46,9 +53,9 @@ const UserHeader = ({ userName, userSurname, role }) => {
         </a>
       </Menu.Item>
       <Menu.Item>
-        <a target="_blank" rel="noopener noreferrer" href="/">
+        <Link to="/" onClick={logout}>
           <LoginOutlined /> Cerrar sesión
-        </a>
+        </Link>
       </Menu.Item>
     </Menu>
   );
