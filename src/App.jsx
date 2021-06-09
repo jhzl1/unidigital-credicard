@@ -10,7 +10,7 @@ import SearchBook from "./pages/SearchBook";
 import AdminPage from "./pages/AdminPage";
 import SearchByDocNumber from "./pages/SearchByDocNumber";
 import Login from "./pages/Login";
-import SearchBatch from "./components/SearchBatch";
+import SearchBatch from "./pages/SearchBatch";
 
 function App() {
   return (

@@ -19,15 +19,9 @@ const SearchByControl = () => {
       <Row>
         <Col>
           <BreadcrumbSearchByControl />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           <FormSearchByControl handleSubmit={handleSubmit} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           <Table
             columns={columnsSearchByNumber}
             dataSource={dataExample}

@@ -1,8 +1,4 @@
-$sidebar-bg-color: linear-gradient(
-  0deg,
-  rgba(46, 64, 83, 1) 0%,
-  rgba(93, 109, 126, 1) 100%
-);
+$sidebar-bg-color: linear-gradient(60deg, #29323c 0%, #485563 100%);
 
 $icon-bg-color: transparent;
 $sidebar-color: #bfc9ca;
@@ -53,6 +49,7 @@ $border: 1px solid blue;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   background: whitesmoke;
+  border-radius: 10px;
 }
 
 .header-desktop {

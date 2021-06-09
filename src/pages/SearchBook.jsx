@@ -8,10 +8,7 @@ const SearchBook = () => {
       <Row>
         <Col>
           <BreadcrumbSearchBook />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           <FormSearchBook />
         </Col>
       </Row>

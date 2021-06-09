@@ -1,13 +1,6 @@
 import { Space } from "antd";
 import { FilePdfOutlined } from "@ant-design/icons";
 
-export const dataSearchByNumber = [
-  {
-    value: "credicard",
-    label: "Credicard",
-  },
-];
-
 export const columnsSearchByNumber = [
   {
     title: "Tipo",
@@ -240,7 +233,10 @@ export const columnsBatchList = [
       <Space size="middle">
         <a href="/">
           Ver en PDF
-          <FilePdfOutlined style={{ color: "red" }} />
+          <FilePdfOutlined
+            style={{ color: "red" }}
+            onClick={console.log("funciona")}
+          />
         </a>
       </Space>
     ),
@@ -304,17 +300,15 @@ export const dataExampleBatchList = [
   },
 ];
 
-export const typeOfDocument = [
+export const columnsGraphics = [
   {
-    value: "valor1",
-    label: "Factura",
+    title: "Descripción",
+    dataIndex: "id",
+    key: "id",
   },
   {
-    value: "valor2",
-    label: "Nota de Crédito",
-  },
-  {
-    value: "valor3",
-    label: "Nota de Débito",
+    title: "Total",
+    dataIndex: "file",
+    key: "file",
   },
 ];

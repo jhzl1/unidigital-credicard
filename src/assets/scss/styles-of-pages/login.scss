@@ -1,5 +1,16 @@
 .general-login {
   padding-top: 20vh;
+  .login {
+    .container-login-left {
+      #logo_uno {
+        overflow: visible;
+        stroke: #d3612d;
+        stroke-width: 1;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+    }
+  }
 }
 
 .login {
@@ -15,13 +26,9 @@
   .logo-login {
     width: 250px;
   }
+
   #container-login {
-    background: rgb(46, 64, 83);
-    background: linear-gradient(
-      0deg,
-      rgba(46, 64, 83, 1) 0%,
-      rgba(93, 109, 126, 1) 100%
-    );
+    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     h3 {
