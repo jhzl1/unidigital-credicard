@@ -2,6 +2,8 @@ import LogoSvg from "../components/LogoSvg";
 import { useHistory } from "react-router";
 import FormLogin from "../components/FormLogin";
 import { loginApi } from "../services/api";
+import { motion } from "framer-motion";
+import { loginVariants } from "../data/dataAnimation";
 
 const Login = () => {
   const history = useHistory();
@@ -12,7 +14,13 @@ const Login = () => {
 
   return (
     <div className="general-login">
-      <div className=" login d-flex flex-row flex-wrap">
+      <motion.div
+        className=" login d-flex flex-row flex-wrap"
+        variants={loginVariants}
+        initial="initial"
+        animate="enter"
+        exit="exit"
+      >
         <div className="d-flex flex-fill justify-content-center align-items-center container-login-left">
           <LogoSvg widthProp="90px" />
         </div>
@@ -24,7 +32,7 @@ const Login = () => {
 
           <FormLogin handleSubmit={handleSubmit} />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

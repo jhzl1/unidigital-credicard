@@ -1,10 +1,18 @@
 import { Breadcrumb } from "antd";
-
+import { linksHome } from "../data/dataLinksHome";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { desktopVariants } from "../data/dataAnimation";
 
 const Home = () => {
   return (
-    <div className="my-5 p-4 desktop-container">
+    <motion.div
+      className="my-5 p-4 desktop-container"
+      variants={desktopVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+    >
       <Breadcrumb className="mb-3">
         <Breadcrumb.Item>Inicio</Breadcrumb.Item>
       </Breadcrumb>
@@ -20,37 +28,19 @@ const Home = () => {
 
         <span className="fs-4 mt-5">Accesos rápidos</span>
         <div className="d-flex flex-row">
-          <Link
-            to="/documents/SearchByNumber"
-            className="m-3 p-4 fs-4 w-25 links-home"
-            id="first-link"
-          >
-            Buscar documentos por número
-          </Link>
-          <Link
-            to="/documents/SearchByControl"
-            className="m-3 p-4 fs-4 w-25 links-home "
-            id="second-link"
-          >
-            Buscar documentos por número de control
-          </Link>
-          <Link
-            to="/documents/SearchByFiscalRegistry"
-            className="m-3 p-4 fs-4 w-25 links-home"
-            id="third-link"
-          >
-            Buscar documentos por RIF o cédula
-          </Link>
-          <Link
-            to="/documents/SearchByProduct"
-            className="m-3 p-4 fs-4 w-25 links-home"
-            id="fourth-link"
-          >
-            Buscar por Tipo de Documento
-          </Link>
+          {linksHome.map((item) => (
+            <Link
+              key={item.title}
+              to={item.path}
+              className="m-3 p-4 fs-4 w-25 links-home"
+              id={item.id}
+            >
+              {item.title}
+            </Link>
+          ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

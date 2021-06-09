@@ -12,6 +12,7 @@ const LogoSvg = ({ widthProp }) => {
       pathLength: 1,
       fill: "#D97D2F",
       transition: {
+        delay: 0.5,
         duration: 2,
         ease: "easeInOut",
       },
@@ -20,7 +21,7 @@ const LogoSvg = ({ widthProp }) => {
 
   const imgVariants = {
     hidden: {
-      scale: 0.9,
+      scale: 0,
       opacity: 0,
     },
     visible: {

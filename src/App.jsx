@@ -11,46 +11,55 @@ import AdminPage from "./pages/AdminPage";
 import SearchByDocNumber from "./pages/SearchByDocNumber";
 import Login from "./pages/Login";
 import SearchBatch from "./pages/SearchBatch";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   return (
     <>
       <Router>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Desktop>
-            <Route exact path="/home" component={Home} />
-            <Route
-              exact
-              path="/documents/SearchByNumber"
-              component={SearchByDocNumber}
-            />
-            <Route
-              exact
-              path="/documents/SearchByControl"
-              component={SearchByControl}
-            />
-            <Route
-              exact
-              path="/documents/SearchByFiscalRegistry"
-              component={SearchByFiscalRegistry}
-            />
-            <Route
-              exact
-              path="/documents/SearchByProduct"
-              component={SearchByProduct}
-            />
-            <Route exact path="/BatchList" component={BatchList} />
-            <Route exact path="/SearchBook" component={SearchBook} />
-            <Route exact path="/Admin" component={AdminPage} />
-            <Route
-              exact
-              path="/statistics/SearchBatchs"
-              component={SearchBatch}
-            />
-          </Desktop>
-          <Route path="*" component={NotFound} />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <Desktop location={location}>
+              <AnimatePresence exitBeforeEnter>
+                <Switch location={location} key={location.pathname}>
+                  <Route exact path="/" component={Login} />
+
+                  <Route exact path="/home" component={Home} />
+                  <Route
+                    exact
+                    path="/documents/SearchByNumber"
+                    component={SearchByDocNumber}
+                  />
+                  <Route
+                    exact
+                    path="/documents/SearchByControl"
+                    component={SearchByControl}
+                  />
+                  <Route
+                    exact
+                    path="/documents/SearchByFiscalRegistry"
+                    component={SearchByFiscalRegistry}
+                  />
+                  <Route
+                    exact
+                    path="/documents/SearchByProduct"
+                    component={SearchByProduct}
+                  />
+                  <Route exact path="/BatchList" component={BatchList} />
+                  <Route exact path="/SearchBook" component={SearchBook} />
+                  <Route exact path="/Admin" component={AdminPage} />
+                  <Route
+                    exact
+                    path="/statistics/SearchBatchs"
+                    component={SearchBatch}
+                  />
+
+                  <Route path="*" component={NotFound} />
+                </Switch>
+              </AnimatePresence>
+            </Desktop>
+          )}
+        />
       </Router>
     </>
   );
