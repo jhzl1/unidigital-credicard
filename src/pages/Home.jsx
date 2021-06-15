@@ -27,12 +27,12 @@ const Home = () => {
         </p>
 
         <span className="fs-4 mt-5">Accesos rápidos</span>
-        <div className="d-flex flex-row">
+        <div className="d-flex flex-row w-100 flex-wrap">
           {linksHome.map((item) => (
             <Link
               key={item.title}
               to={item.path}
-              className="m-3 p-4 fs-4 w-25 links-home"
+              className="m-3 p-4 fs-5 w-25 links-home"
               id={item.id}
             >
               {item.title}

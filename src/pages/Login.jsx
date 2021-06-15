@@ -18,8 +18,7 @@ const Login = () => {
         className=" login d-flex flex-row flex-wrap"
         variants={loginVariants}
         initial="initial"
-        animate="enter"
-        exit="exit"
+        animate="show"
       >
         <div className="d-flex flex-fill justify-content-center align-items-center container-login-left">
           <LogoSvg widthProp="90px" />

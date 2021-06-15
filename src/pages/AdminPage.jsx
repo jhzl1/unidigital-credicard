@@ -17,34 +17,25 @@ const AdminPage = () => {
     setVisible(false);
   };
   return (
-    <Container className="desktop-container my-5 p-4" fluid>
-      <Row>
-        <Col>
-          <BreadcrumbAdmin />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Button type="primary" onClick={showDrawer}>
-            <UserAddOutlined /> Crear nuevo usuario
-          </Button>
-          <Drawer
-            placement="right"
-            closable={false}
-            onClose={onClose}
-            visible={visible}
-            width={380}
-          >
-            <FormCreateNewUser />
-          </Drawer>
-        </Col>
-      </Row>
+    <Container className="desktop-container my-5 p-4 " fluid>
+      <Col>
+        <BreadcrumbAdmin />
 
-      <Row>
-        <Col>
-          <UserList />
-        </Col>
-      </Row>
+        <Button type="primary" onClick={showDrawer}>
+          <UserAddOutlined /> Crear nuevo usuario
+        </Button>
+        <Drawer
+          placement="right"
+          closable={false}
+          onClose={onClose}
+          visible={visible}
+          width={380}
+        >
+          <FormCreateNewUser />
+        </Drawer>
+
+        <UserList />
+      </Col>
     </Container>
   );
 };

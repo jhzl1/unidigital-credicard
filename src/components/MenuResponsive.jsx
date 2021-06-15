@@ -1,4 +1,5 @@
 import { slide as MenuSlide } from "react-burger-menu";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import Burger from "@animated-burgers/burger-squeeze";
 import "@animated-burgers/burger-squeeze/dist/styles.css";
 import { useState } from "react";
@@ -12,6 +13,7 @@ import {
   FileOutlined,
   BarChartOutlined,
 } from "@ant-design/icons";
+import { dataMenu } from "../data/dataMenu";
 
 const MenuResponsive = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -22,93 +24,35 @@ const MenuResponsive = () => {
       onStateChange={() => setIsOpen(!isOpen)}
       customBurgerIcon={<Burger isOpen={isOpen} />}
     >
-      <Link to="/home">
-        <img
-          src={LogoTransparent}
-          alt="Unigital"
-          style={{ width: "240px" }}
-          className="my-3"
-        />
-      </Link>
-
-      <Accordion defaultActiveKey="0">
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="0">
-            <FileOutlined /> Documentos
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            <>
-              <Card.Body>
-                <Link to="/documents/SearchByNumber" className="bm-item-list">
-                  Número de documento
-                </Link>
-              </Card.Body>
-              <Card.Body>
-                <Link to="/documents/SearchByControl" className="bm-item-list">
-                  Número de control
-                </Link>
-              </Card.Body>
-              <Card.Body>
-                <Link
-                  to="/documents/SearchByFiscalRegistry"
-                  className="bm-item-list"
-                >
-                  RIF o cédula
-                </Link>
-              </Card.Body>
-              <Card.Body>
-                <Link to="/documents/SearchByProduct" className="bm-item-list">
-                  Tipo de Documento
-                </Link>
-              </Card.Body>
-            </>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="1">
-            <FundOutlined /> Ciclos
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>
-              <Link to="/BatchList" className="bm-item-list">
-                Listas
-              </Link>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="2">
-            <BarChartOutlined /> Indicadores
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="2">
-            <Card.Body>
-              <Link to="/statistics/SearchBatchs" className="bm-item-list">
-                Por Archivo / Oficina
-              </Link>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="3">
-            <ReadOutlined />{" "}
-            <Link to="/SearchBook" className="bm-item-list">
-              Libros
-            </Link>
-          </Accordion.Toggle>
-        </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="4">
-            <UserOutlined /> Administración
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="4">
-            <Card.Body>
-              <Link to="/Admin" className="bm-item-list">
-                Usuarios
-              </Link>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
+      <ProSidebar
+        collapsed={false}
+        className="d-xs-block d-sm-block d-md-block d-lg-none w-100 p-0 m-0"
+      >
+        <Link to="/home">
+          <img
+            src={LogoTransparent}
+            alt=""
+            style={{ width: "240px" }}
+            className="logo-menu"
+          />
+        </Link>
+        <Menu iconShape="square" style={{ minHeight: "100vh" }}>
+          {dataMenu.map((item) => (
+            <SubMenu
+              key={item.id}
+              icon={item.icon}
+              title={item.name}
+              className="submenu"
+            >
+              {item.items.map((item, index) => (
+                <MenuItem key={index}>
+                  <Link to={item.path}>{item.name}</Link>
+                </MenuItem>
+              ))}
+            </SubMenu>
+          ))}
+        </Menu>
+      </ProSidebar>
     </MenuSlide>
   );
 };

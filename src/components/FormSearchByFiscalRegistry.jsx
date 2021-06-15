@@ -42,13 +42,13 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
     setDisabled(false);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("companiesList")) {
-      setCompany(JSON.parse(localStorage.getItem("companiesList")));
-    } else {
-      getParameters();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("companiesList")) {
+  //     setCompany(JSON.parse(localStorage.getItem("companiesList")));
+  //   } else {
+  //     getParameters();
+  //   }
+  // }, []);
 
   return (
     <ConfigProvider locale={locale}>
