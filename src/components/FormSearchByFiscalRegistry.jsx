@@ -42,13 +42,13 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
     setDisabled(false);
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("companiesList")) {
-  //     setCompany(JSON.parse(localStorage.getItem("companiesList")));
-  //   } else {
-  //     getParameters();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("companiesList")) {
+      setCompany(JSON.parse(localStorage.getItem("companiesList")));
+    } else {
+      getParameters();
+    }
+  }, []);
 
   return (
     <ConfigProvider locale={locale}>
@@ -58,7 +58,7 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
         validationSchema={validationSearchByFiscalRegistry}
         onSubmit={() => handleSubmit(data)}
       >
-        <Form className="d-flex">
+        <Form className="d-flex form pt-3 px-2">
           <Form.Item name="CompanyStrongId" className="w-25 me-2">
             <Select
               name="CompanyStrongId"

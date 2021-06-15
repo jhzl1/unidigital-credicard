@@ -40,8 +40,8 @@ const FormSearchByControl = ({ handleSubmit }) => {
         validationSchema={validationSearchByControl}
         onSubmit={(data, { resetForm }) => handleSubmit(data, { resetForm })}
       >
-        <Form className=" d-flex">
-          <Form.Item name="CompanyStrongId" className="w-25 me-2">
+        <Form className="d-flex form pt-3">
+          <Form.Item name="CompanyStrongId" className="w-25 ms-2 me-2">
             <Select
               name="CompanyStrongId"
               placeholder="Seleccione una empresa"

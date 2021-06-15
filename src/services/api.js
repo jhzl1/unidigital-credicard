@@ -51,20 +51,15 @@ export async function getData(url) {
 }
 
 export async function sendData(url, data) {
-  const config = {
-    method: "get",
-    url: "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api/documents/searchbynumber",
-    headers: {
-      Authorization: `Bearer ${sessionToken}`,
-      "Content-Type": "application/json",
-    },
-  };
-  console.log(data);
-  await axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
+  try {
+    const getToken = localStorage.getItem("jwt");
+    const response = await axios.post(`${baseUrl}${url}`, data, {
+      headers: {
+        Authorization: `Bearer ${getToken}`,
+      },
     });
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
 }

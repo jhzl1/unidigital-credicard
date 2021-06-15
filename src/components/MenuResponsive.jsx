@@ -5,14 +5,6 @@ import "@animated-burgers/burger-squeeze/dist/styles.css";
 import { useState } from "react";
 import LogoTransparent from "../assets/img/unidigital-logo-new.png";
 import { Link } from "react-router-dom";
-import { Accordion, Card } from "react-bootstrap";
-import {
-  UserOutlined,
-  FundOutlined,
-  ReadOutlined,
-  FileOutlined,
-  BarChartOutlined,
-} from "@ant-design/icons";
 import { dataMenu } from "../data/dataMenu";
 
 const MenuResponsive = () => {

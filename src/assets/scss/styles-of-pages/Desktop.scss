@@ -16,25 +16,7 @@ $border: 1px solid blue;
   height: 45px;
   margin: 16px;
 }
-.pro-sidebar
-  .pro-menu
-  .pro-menu-item.pro-sub-menu
-  .pro-inner-list-item
-  .pro-inner-item {
-  transition: all 0.3s;
-  margin-right: 25px;
-  a {
-    display: block;
-    width: 100%;
-  }
-  &:hover {
-    background-color: white;
-    border-radius: 5px;
-    a {
-      color: #29323c;
-    }
-  }
-}
+
 .pro-icon {
   background-color: #ffffff1a;
   border-radius: 50px;

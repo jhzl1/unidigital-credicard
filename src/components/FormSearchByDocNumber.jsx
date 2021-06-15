@@ -1,5 +1,5 @@
 import { Form, Input, SubmitButton, Select } from "formik-antd";
-import { Formik, Form as FormFormik } from "formik";
+import { Formik } from "formik";
 import {
   initialValues,
   validationSearchByDocNumber,
@@ -54,8 +54,8 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
         validationSchema={validationSearchByDocNumber}
         onSubmit={(data, { resetForm }) => handleSubmit(data, { resetForm })}
       >
-        <FormFormik className=" d-flex">
-          <Form.Item name="CompanyStrongId" className="w-25 me-2">
+        <Form className="d-flex form pt-3 px-2">
+          <Form.Item name="CompanyStrongId" className="w-25  me-2">
             <Select
               name="CompanyStrongId"
               placeholder="Seleccione una empresa"
@@ -90,7 +90,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
           <SubmitButton className="me-3" disabled={disabled}>
             Buscar
           </SubmitButton>
-        </FormFormik>
+        </Form>
       </Formik>
     </>
   );

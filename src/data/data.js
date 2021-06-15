@@ -1,11 +1,11 @@
-import { Space } from "antd";
+import { Space, Tag, Button } from "antd";
 import { FilePdfOutlined } from "@ant-design/icons";
 
 export const columnsSearchByNumber = [
   {
     title: "Tipo",
-    dataIndex: "tipe",
-    key: "tipe",
+    dataIndex: "product",
+    key: "product",
   },
   {
     title: "Serie",
@@ -14,23 +14,38 @@ export const columnsSearchByNumber = [
   },
   {
     title: "N° Documento",
-    dataIndex: "numberDoc",
-    key: "numberDoc",
+    dataIndex: "number",
+    key: "number",
+    render: (text) => (
+      <Tag color="#2db7f5">
+        <span className="fw-bold">{text}</span>
+      </Tag>
+    ),
   },
   {
     title: "N° Control",
-    dataIndex: "numberControl",
-    key: "numberControl",
+    dataIndex: "control",
+    key: "control",
+    render: (text) => (
+      <Tag color="#f50">
+        <span className="fw-bold">{text}</span>
+      </Tag>
+    ),
   },
   {
     title: "Fecha",
-    dataIndex: "date",
-    key: "date",
+    dataIndex: "emissionDate",
+    key: "emissionDate",
   },
   {
     title: "Cliente",
-    dataIndex: "customer",
-    key: "customer",
+    dataIndex: "name",
+    key: "name",
+  },
+  {
+    title: "Moneda",
+    dataIndex: "currency",
+    key: "currency",
   },
   {
     title: "Total",
@@ -42,12 +57,14 @@ export const columnsSearchByNumber = [
     title: "Acción",
     key: "action",
     render: (text, record) => (
-      <Space size="middle">
-        <a href="/">
-          Ver en PDF
-          <FilePdfOutlined style={{ color: "red" }} />
-        </a>
-      </Space>
+      <Button
+        type="primary"
+        danger
+        onClick={() => console.log(record.strongId)}
+      >
+        Ver en PDF
+        <FilePdfOutlined />
+      </Button>
     ),
   },
 ];
