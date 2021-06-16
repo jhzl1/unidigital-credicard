@@ -11,6 +11,7 @@ const SearchByProduct = () => {
     console.log(data);
     setIsLoading(true);
   };
+
   return (
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>

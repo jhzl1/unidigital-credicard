@@ -5,32 +5,21 @@ import {
   validationSearchByControl,
 } from "../data/dataSearchByControl";
 import { useEffect, useState } from "react";
-import { getData } from "../services/api";
+import { useGetHttp } from "../hooks/useGetHttp";
 
 const FormSearchByControl = ({ handleSubmit }) => {
-  const [company, setCompany] = useState([]);
-  const [disabled, setDisabled] = useState(false);
+  const [company] = useGetHttp("/documents/searchbycontrolnumber");
+  const [disabled, setDisabled] = useState(true);
   const { Option } = Select;
 
-  const getParameters = async () => {
-    setDisabled(true);
-
-    const getCompanies = await getData("/companies/list");
-
-    localStorage.setItem("companiesList", JSON.stringify(getCompanies));
-
-    setCompany(getCompanies.data.companies);
-
-    setDisabled(false);
-  };
-
   useEffect(() => {
-    if (localStorage.getItem("companiesList")) {
-      setCompany(JSON.parse(localStorage.getItem("companiesList")));
-    } else {
-      getParameters();
-    }
-  }, []);
+    const checkCompleted = () => {
+      if (company !== undefined) {
+        setDisabled(false);
+      }
+    };
+    checkCompleted();
+  }, [company]);
 
   return (
     <>

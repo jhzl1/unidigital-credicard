@@ -37,6 +37,8 @@ export const useGetHttp = (url) => {
     } else if (!!companies && url === "/companies/list") {
       setData(JSON.parse(companies));
       return;
+    } else if (!!companies && url === "/documents/searchbycontrolnumber") {
+      setData(JSON.parse(companies));
     }
   }, [url, products, companies]);
 

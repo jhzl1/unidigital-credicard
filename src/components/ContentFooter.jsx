@@ -9,7 +9,7 @@ const ContentFooter = () => {
     background: "#364d79",
   }; */
   return (
-    <footer className="mx-3 prueba ">
+    <footer className="mx-3 ">
       <h6 className="text-center"> Corporación Unidigital C.A. 2021 </h6>
     </footer>
   );

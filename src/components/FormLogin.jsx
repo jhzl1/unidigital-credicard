@@ -1,45 +1,29 @@
-import { Input, Form, Checkbox, Button } from "antd";
+import { Formik } from "formik";
+import { Form, Input, SubmitButton, Select } from "formik-antd";
+import { initialValuesLogin, validationLogin } from "../data/dataFormLogin";
 
 const FormLogin = ({ handleSubmit }) => {
   return (
-    <Form
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={handleSubmit}
-      className="my-4 d-flex flex-column justify-content-center"
+    <Formik
+      initialValues={initialValuesLogin}
+      validationSchema={validationLogin}
+      onSubmit={(data) => handleSubmit(data)}
     >
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Por favor ingrese su usuario",
-          },
-        ]}
-      >
-        <Input placeholder="Usuario" />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Por favor ingrese su contraseña",
-          },
-        ]}
-      >
-        <Input.Password placeholder="Contraseña" />
-      </Form.Item>
+      <Form className="my-4 d-flex flex-column justify-content-center">
+        <Form.Item name="UserName" placeholder="Ingrese su correo">
+          <Input name="UserName" />
+        </Form.Item>
+        <Form.Item name="Password" placeholder="Ingrese su correo">
+          <Input.Password name="Password" />
+        </Form.Item>
 
-      <Form.Item name="remember" valuePropName="checked">
-        <Checkbox className="checkbox">Recuérdame</Checkbox>
-      </Form.Item>
+        {/* <Form.Item name="remember" valuePropName="checked">
+          <Checkbox className="checkbox">Recuérdame</Checkbox>
+        </Form.Item> */}
 
-      <Button type="primary" htmlType="submit">
-        Iniciar sesión
-      </Button>
-    </Form>
+        <SubmitButton>Iniciar sesión</SubmitButton>
+      </Form>
+    </Formik>
   );
 };
 

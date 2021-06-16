@@ -1,13 +1,13 @@
 import FormSearchByDocNumber from "../components/FormSearchByDocNumber";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import BreadcrumbSearchByDocNumber from "../components/BreadcrumbSearchByDocNumber";
 import { Table, Spin, message } from "antd";
-import { columnsSearchByNumber } from "../data/data";
 import { useState } from "react";
 import { sendData } from "../services/api";
 import { notFoundDocument } from "../data/dataErrors";
 import { desktopVariants } from "../data/dataAnimation";
 import { motion } from "framer-motion";
+import { columnsGeneral } from "../data/dataGeneralTable";
 
 const SearchByDocNumber = () => {
   const [dataTable, setDataTable] = useState([]);
@@ -50,7 +50,7 @@ const SearchByDocNumber = () => {
 
           {dataTable.length > 1 && (
             <Table
-              columns={columnsSearchByNumber}
+              columns={columnsGeneral}
               dataSource={dataTable}
               rowKey="strongId"
               className="mt-4 table"

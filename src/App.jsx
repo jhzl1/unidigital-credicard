@@ -11,11 +11,13 @@ import AdminPage from "./pages/AdminPage";
 import SearchByDocNumber from "./pages/SearchByDocNumber";
 import Login from "./pages/Login";
 import SearchBatch from "./pages/SearchBatch";
+import PrivateRoute from "./components/PrivateRoute";
 import { AnimatePresence } from "framer-motion";
+import AuthProvider from "./components/auth/AuthProvider";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <Route
           render={({ location }) => (
@@ -24,31 +26,35 @@ function App() {
                 <Switch location={location} key={location.pathname}>
                   <Route exact path="/" component={Login} />
 
-                  <Route exact path="/home" component={Home} />
-                  <Route
+                  <PrivateRoute exact path="/home" component={Home} />
+                  <PrivateRoute
                     exact
                     path="/documents/SearchByNumber"
                     component={SearchByDocNumber}
                   />
-                  <Route
+                  <PrivateRoute
                     exact
                     path="/documents/SearchByControl"
                     component={SearchByControl}
                   />
-                  <Route
+                  <PrivateRoute
                     exact
                     path="/documents/SearchByFiscalRegistry"
                     component={SearchByFiscalRegistry}
                   />
-                  <Route
+                  <PrivateRoute
                     exact
                     path="/documents/SearchByProduct"
                     component={SearchByProduct}
                   />
-                  <Route exact path="/BatchList" component={BatchList} />
-                  <Route exact path="/SearchBook" component={SearchBook} />
-                  <Route exact path="/Admin" component={AdminPage} />
-                  <Route
+                  <PrivateRoute exact path="/BatchList" component={BatchList} />
+                  <PrivateRoute
+                    exact
+                    path="/SearchBook"
+                    component={SearchBook}
+                  />
+                  <PrivateRoute exact path="/Admin" component={AdminPage} />
+                  <PrivateRoute
                     exact
                     path="/statistics/SearchBatchs"
                     component={SearchBatch}
@@ -61,7 +67,7 @@ function App() {
           )}
         />
       </Router>
-    </>
+    </AuthProvider>
   );
 }
 

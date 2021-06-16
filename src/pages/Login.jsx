@@ -1,16 +1,21 @@
 import LogoSvg from "../components/LogoSvg";
 import { useHistory } from "react-router";
 import FormLogin from "../components/FormLogin";
-import { loginApi } from "../services/api";
 import { motion } from "framer-motion";
 import { loginVariants } from "../data/dataAnimation";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const auth = useAuth();
   const history = useHistory();
-  const handleSubmit = async () => {
-    await loginApi();
-    history.push("/home");
+
+  const handleSubmit = async (user) => {
+    await auth.login(user);
   };
+
+  if (auth.isAuthenticated) {
+    history.push("/home");
+  }
 
   return (
     <div className="general-login">

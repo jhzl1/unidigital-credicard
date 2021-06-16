@@ -3,15 +3,12 @@ import { KeyOutlined, LoginOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import { Link, useHistory } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const UserHeader = ({ userName, userSurname, role }) => {
   const [changeColorAvatar, setChangeColorAvatar] = useState({});
-  const history = useHistory();
 
-  const logout = () => {
-    history.push("/");
-    localStorage.clear();
-  };
+  const auth = useAuth();
 
   useEffect(() => {
     const setColorAvatar = () => {
@@ -33,6 +30,11 @@ const UserHeader = ({ userName, userSurname, role }) => {
     setColorAvatar();
   }, [role]);
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    auth.logout();
+  };
+
   const menu = (
     <Menu>
       <div className=" d-flex flex-column ">
@@ -53,9 +55,9 @@ const UserHeader = ({ userName, userSurname, role }) => {
         </a>
       </Menu.Item>
       <Menu.Item>
-        <Link to="/" onClick={logout}>
+        <a href="/" onClick={(e) => handleClick(e)}>
           <LoginOutlined /> Cerrar sesión
-        </Link>
+        </a>
       </Menu.Item>
     </Menu>
   );

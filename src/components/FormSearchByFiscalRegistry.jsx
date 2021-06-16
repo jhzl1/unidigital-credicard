@@ -1,23 +1,23 @@
 import { Formik } from "formik";
 import { validationSearchByFiscalRegistry } from "../data/dataSearchByFiscalRegistry";
-import { Form, Input, Select, DatePicker } from "formik-antd";
+import { Form, Input, Select, DatePicker, SubmitButton } from "formik-antd";
 import locale from "antd/lib/locale/es_ES";
-import { ConfigProvider, Button } from "antd";
+import { ConfigProvider } from "antd";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getData } from "../services/api";
+import { useGetHttp } from "../hooks/useGetHttp";
 
 const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
   const [data, setData] = useState({
     CompanyStrongId: null,
     FiscalRegistry: null,
-    dateFrom: null,
-    dateTo: null,
+    // dateFrom: null,
+    // dateTo: null,
   });
 
-  const [company, setCompany] = useState([]);
+  const [company] = useGetHttp("/companies/list");
 
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   const handleChangeData = (key, value) => {
     setData({
@@ -28,27 +28,14 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
 
   const { Option } = Select;
 
-  // const getParameters = async () => {
-  //   setDisabled(true);
-
-  //   const getCompany = await getData("/companies/list");
-  //   localStorage.setItem(
-  //     "companiesList",
-  //     JSON.stringify(getCompany.data.companies)
-  //   );
-
-  //   setCompany(getCompany.data.companies);
-
-  //   setDisabled(false);
-  // };
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("companiesList")) {
-  //     setCompany(JSON.parse(localStorage.getItem("companiesList")));
-  //   } else {
-  //     getParameters();
-  //   }
-  // }, []);
+  useEffect(() => {
+    const checkCompleted = () => {
+      if (company !== undefined) {
+        setDisabled(false);
+      }
+    };
+    checkCompleted();
+  }, [company]);
 
   return (
     <ConfigProvider locale={locale}>
@@ -106,9 +93,9 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
             />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit">
+          <SubmitButton className="me-3" disabled={disabled}>
             Buscar
-          </Button>
+          </SubmitButton>
         </Form>
       </Formik>
     </ConfigProvider>
