@@ -22,13 +22,13 @@ const SearchByControl = () => {
 
           <FormSearchByControl handleSubmit={handleSubmit} />
 
-          <Table
+          {/* <Table
             columns={columnsSearchByNumber}
             dataSource={dataExample}
             className="mt-4 table"
             size="small"
             scroll={{ x: "max-content" }}
-          />
+          /> */}
         </Col>
       </Row>
     </Container>

@@ -28,27 +28,27 @@ const FormSearchByFiscalRegistry = ({ handleSubmit }) => {
 
   const { Option } = Select;
 
-  const getParameters = async () => {
-    setDisabled(true);
+  // const getParameters = async () => {
+  //   setDisabled(true);
 
-    const getCompany = await getData("/companies/list");
-    localStorage.setItem(
-      "companiesList",
-      JSON.stringify(getCompany.data.companies)
-    );
+  //   const getCompany = await getData("/companies/list");
+  //   localStorage.setItem(
+  //     "companiesList",
+  //     JSON.stringify(getCompany.data.companies)
+  //   );
 
-    setCompany(getCompany.data.companies);
+  //   setCompany(getCompany.data.companies);
 
-    setDisabled(false);
-  };
+  //   setDisabled(false);
+  // };
 
-  useEffect(() => {
-    if (localStorage.getItem("companiesList")) {
-      setCompany(JSON.parse(localStorage.getItem("companiesList")));
-    } else {
-      getParameters();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("companiesList")) {
+  //     setCompany(JSON.parse(localStorage.getItem("companiesList")));
+  //   } else {
+  //     getParameters();
+  //   }
+  // }, []);
 
   return (
     <ConfigProvider locale={locale}>

@@ -5,11 +5,6 @@ import moment from "moment";
 
 export const columnsSearchByNumber = [
   {
-    title: "Tipo",
-    dataIndex: "product",
-    key: "product",
-  },
-  {
     title: "N° Documento",
     dataIndex: "number",
     key: "number",

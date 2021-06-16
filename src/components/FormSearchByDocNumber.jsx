@@ -16,11 +16,10 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
 
   useEffect(() => {
     const checkCompleted = () => {
-      if (company && product) {
+      if (company !== undefined && product !== undefined) {
         setDisabled(false);
       }
     };
-
     checkCompleted();
   }, [company, product]);
 
