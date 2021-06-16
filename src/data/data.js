@@ -1,16 +1,13 @@
 import { Space, Tag, Button } from "antd";
 import { FilePdfOutlined } from "@ant-design/icons";
+import { getDocument } from "../services/api";
+import moment from "moment";
 
 export const columnsSearchByNumber = [
   {
     title: "Tipo",
     dataIndex: "product",
     key: "product",
-  },
-  {
-    title: "Serie",
-    dataIndex: "serie",
-    key: "serie",
   },
   {
     title: "N° Documento",
@@ -36,6 +33,7 @@ export const columnsSearchByNumber = [
     title: "Fecha",
     dataIndex: "emissionDate",
     key: "emissionDate",
+    render: (text) => <span>{moment(text.slice(0, 10)).format("L")}</span>,
   },
   {
     title: "Cliente",
@@ -51,6 +49,7 @@ export const columnsSearchByNumber = [
     title: "Total",
     dataIndex: "total",
     key: "total",
+    render: (text, record) => <span className="fw-bold">{text}</span>,
   },
 
   {
@@ -60,7 +59,7 @@ export const columnsSearchByNumber = [
       <Button
         type="primary"
         danger
-        onClick={() => console.log(record.strongId)}
+        onClick={() => getDocument(record.strongId)}
       >
         Ver en PDF
         <FilePdfOutlined />

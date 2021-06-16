@@ -5,46 +5,24 @@ import {
   validationSearchByDocNumber,
 } from "../data/dataFormSearchByDocNumber";
 import { useEffect, useState } from "react";
-import { getData } from "../services/api";
+import { useGetHttp } from "../hooks/useGetHttp";
 
 const { Option } = Select;
 
 const FormSearchByDocNumber = ({ handleSubmit }) => {
-  const [company, setCompany] = useState([]);
-  const [product, setProduct] = useState([]);
-  const [disabled, setDisabled] = useState(false);
-
-  const getParameters = async () => {
-    setDisabled(true);
-    const getProducts = await getData("/products/list");
-
-    localStorage.setItem("products", JSON.stringify(getProducts.data.products));
-
-    setProduct(getProducts.data.products);
-
-    const getCompany = await getData("/companies/list");
-    localStorage.setItem(
-      "companiesList",
-      JSON.stringify(getCompany.data.companies)
-    );
-
-    setCompany(getCompany.data.companies);
-
-    setDisabled(false);
-  };
+  const [company] = useGetHttp("/companies/list");
+  const [product] = useGetHttp("/products/list");
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    if (
-      localStorage.getItem("products") &&
-      localStorage.getItem("companiesList")
-    ) {
-      setProduct(JSON.parse(localStorage.getItem("products")));
-      setCompany(JSON.parse(localStorage.getItem("companiesList")));
-      console.log("paso por aqui");
-    } else {
-      getParameters();
-    }
-  }, []);
+    const checkCompleted = () => {
+      if (company && product) {
+        setDisabled(false);
+      }
+    };
+
+    checkCompleted();
+  }, [company, product]);
 
   return (
     <>
@@ -52,7 +30,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSearchByDocNumber}
-        onSubmit={(data, { resetForm }) => handleSubmit(data, { resetForm })}
+        onSubmit={(data) => handleSubmit(data)}
       >
         <Form className="d-flex form pt-3 px-2">
           <Form.Item name="CompanyStrongId" className="w-25  me-2">

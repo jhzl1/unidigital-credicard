@@ -63,3 +63,18 @@ export async function sendData(url, data) {
     console.log(e);
   }
 }
+
+export async function getDocument(strongId) {
+  try {
+    const getToken = localStorage.getItem("jwt");
+    const response = await axios.get(`${baseUrl}/documents/view/${strongId}`, {
+      headers: {
+        Authorization: `Bearer ${getToken}`,
+      },
+    });
+    window.open(response.data.url, "_blank");
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+}
