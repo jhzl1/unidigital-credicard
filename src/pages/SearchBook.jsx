@@ -1,13 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbSearchBook from "../components/BreadcrumbSearchBook";
+import Breadcrumb from "../components/Breadcrumb";
 import FormSearchBook from "../components/FormSearchBook";
+import { breadcrumbSearchBook } from "../data/dataBreadcrumbs";
 
 const SearchBook = () => {
   return (
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>
         <Col>
-          <BreadcrumbSearchBook />
+          <Breadcrumb names={breadcrumbSearchBook} />
 
           <FormSearchBook />
         </Col>

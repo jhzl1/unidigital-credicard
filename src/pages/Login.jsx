@@ -1,5 +1,5 @@
 import LogoSvg from "../components/LogoSvg";
-import { useHistory } from "react-router";
+import { Redirect } from "react-router";
 import FormLogin from "../components/FormLogin";
 import { motion } from "framer-motion";
 import { loginVariants } from "../data/dataAnimation";
@@ -7,14 +7,13 @@ import useAuth from "../hooks/useAuth";
 
 const Login = () => {
   const auth = useAuth();
-  const history = useHistory();
 
   const handleSubmit = async (user) => {
     await auth.login(user);
   };
 
   if (auth.isAuthenticated) {
-    history.push("/home");
+    return <Redirect to="/home" />;
   }
 
   return (

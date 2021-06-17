@@ -35,13 +35,15 @@
       color: white;
     }
     .ant-form {
-      #username,
-      .ant-input-affix-wrapper {
+      #UserName {
         background: #ffffff44;
+      }
+      .ant-input {
+        background: transparent;
         color: white;
       }
-      #password {
-        background: transparent;
+      .ant-input-password {
+        background: #ffffff44;
         color: white;
       }
       .ant-input-password-icon,

@@ -21,13 +21,13 @@ const FormBatchList = ({ handleSubmit }) => {
     setDisabled(false);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("companiesList")) {
-      setCompany(JSON.parse(localStorage.getItem("companiesList")));
-    } else {
-      getParameters();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("companiesList")) {
+  //     setCompany(JSON.parse(localStorage.getItem("companiesList")));
+  //   } else {
+  //     getParameters();
+  //   }
+  // }, []);
   return (
     <>
       <h4>Parámetros de búsqueda</h4>

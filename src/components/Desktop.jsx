@@ -6,8 +6,11 @@ import UserHeader from "./UserHeader";
 import ContentFooter from "../components/ContentFooter";
 import { Divider } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import useAuth from "../hooks/useAuth";
 
 const Desktop = ({ children, location }) => {
+  const auth = useAuth();
+
   if (location.pathname === "/") {
     return <>{children}</>;
   } else {
@@ -30,8 +33,12 @@ const Desktop = ({ children, location }) => {
                   />
                   <Divider type="vertical" className="fs-2 m-3 bg-secondary" />
                   <UserHeader
-                    userName="Omar"
-                    userSurname="Campos"
+                    userName={
+                      auth.isAuthenticated !== undefined
+                        ? auth.tokenDecoded.unique_name
+                        : null
+                    }
+                    // userSurname="Campos"
                     role="Supervisor"
                   />
 

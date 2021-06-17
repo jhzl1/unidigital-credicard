@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { message } from "antd";
+import jwt_decode from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -8,9 +9,12 @@ const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("jwt") || ""
   );
+  const [tokenDecoded, setTokenDecoded] = useState("");
 
   const baseUrl =
     "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api";
+
+  // const tokenDecoded = jwt_decode(isAuthenticated);
 
   useEffect(() => {
     try {
@@ -21,11 +25,12 @@ const AuthProvider = ({ children }) => {
   }, [isAuthenticated]);
 
   const contextValue = {
+    tokenDecoded,
     isAuthenticated,
     async login(user) {
       try {
         const res = await axios.post(`${baseUrl}/user/login`, user);
-        console.log(res);
+        setIsAuthenticated(res.data.accessToken);
         localStorage.setItem("jwt", res.data.accessToken);
       } catch (error) {
         if (
@@ -35,7 +40,6 @@ const AuthProvider = ({ children }) => {
           message.error(error.response.data.errors[0].message);
         }
       }
-      setIsAuthenticated(localStorage.getItem("jwt"));
     },
     logout() {
       setIsAuthenticated("");

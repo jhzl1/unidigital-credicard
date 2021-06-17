@@ -1,6 +1,6 @@
 import FormSearchByDocNumber from "../components/FormSearchByDocNumber";
 import { Row, Col } from "react-bootstrap";
-import BreadcrumbSearchByDocNumber from "../components/BreadcrumbSearchByDocNumber";
+import Breadcrumb from "../components/Breadcrumb";
 import { Table, Spin, message } from "antd";
 import { useState } from "react";
 import { sendData } from "../services/api";
@@ -8,6 +8,7 @@ import { notFoundDocument } from "../data/dataErrors";
 import { desktopVariants } from "../data/dataAnimation";
 import { motion } from "framer-motion";
 import { columnsGeneral } from "../data/dataGeneralTable";
+import { breadcrumbSearchByDocNumber } from "../data/dataBreadcrumbs";
 
 const SearchByDocNumber = () => {
   const [dataTable, setDataTable] = useState([]);
@@ -38,7 +39,7 @@ const SearchByDocNumber = () => {
     >
       <Row>
         <Col>
-          <BreadcrumbSearchByDocNumber />
+          <Breadcrumb names={breadcrumbSearchByDocNumber} />
 
           <FormSearchByDocNumber handleSubmit={handleSubmit} />
 

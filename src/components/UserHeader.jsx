@@ -2,7 +2,6 @@ import { Menu, Dropdown, Divider, Avatar, Badge } from "antd";
 import { KeyOutlined, LoginOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
-import { Link, useHistory } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const UserHeader = ({ userName, userSurname, role }) => {
@@ -70,7 +69,7 @@ const UserHeader = ({ userName, userSurname, role }) => {
       >
         <Badge status="success">
           <Avatar style={changeColorAvatar} size="large" shape="square">
-            {userName}
+            {/* <span className="fs-4"> {userName.charAt(0).toUpperCase()}</span> */}
           </Avatar>
         </Badge>
         <DownOutlined className="text-secondary p-2" />

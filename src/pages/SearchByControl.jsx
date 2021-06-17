@@ -1,26 +1,31 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbSearchByControl from "../components/BreadcrumbSearchByControl";
 import FormSearchByControl from "../components/FormSearchByControl";
-
+import Breadcrumb from "../components/Breadcrumb";
 import { Table, Spin, message } from "antd";
 import { useState } from "react";
 import { sendData } from "../services/api";
 import { columnsGeneral } from "../data/dataGeneralTable";
+import { breadcrumbSearchByControl } from "../data/dataBreadcrumbs";
 
 const SearchByControl = () => {
   const [dataTable, setDataTable] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (data, { resetForm }) => {
+  const handleSubmit = async (data) => {
     setLoading(true);
+    console.log(data);
     try {
-      console.log(data);
       const res = await sendData("/documents/searchbycontrolnumber", data);
       console.log(res);
       setDataTable(res.data.documents);
-      res.data.information[0] ===
-        "No se han encontrado documentos por el numero de control indicado" &&
+
+      if (
+        res.data.information[0] ===
+        "No se han encontrado documentos por el numero de control indicado"
+      ) {
         message.warning(res.data.information[0], [5]);
+      }
+
       // resetForm();
     } catch (error) {
       console.log(error);
@@ -32,7 +37,7 @@ const SearchByControl = () => {
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>
         <Col>
-          <BreadcrumbSearchByControl />
+          <Breadcrumb names={breadcrumbSearchByControl} />
 
           <FormSearchByControl handleSubmit={handleSubmit} />
 

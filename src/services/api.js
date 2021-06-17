@@ -9,17 +9,6 @@ const user = {
 const baseUrl =
   "https://demo.unidigital.global/CredicardDigitalInvoiceServices/api";
 
-export const loginApi = async () => {
-  await axios
-    .post(`${baseUrl}/user/login`, user)
-    .then((response) => {
-      localStorage.setItem("jwt", response.data.accessToken);
-      console.log(response);
-      return response;
-    })
-    .catch((error) => console.log(error));
-};
-
 const sessionToken = localStorage.getItem("jwt");
 
 const checkAuthExpire = () => {

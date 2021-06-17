@@ -1,10 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbSearchBatch from "../components/BreadcrumbSearchBatch";
+import Breadcrumb from "../components/Breadcrumb";
 import { Tabs } from "antd";
 import Graphics from "../components/Graphics";
 import FormSearchBatch from "../components/FormSearchBatch";
 import { motion } from "framer-motion";
 import { desktopVariants } from "../data/dataAnimation";
+import { breadcrumbSearchBatch } from "../data/dataBreadcrumbs";
 
 const SearchBatch = () => {
   const { TabPane } = Tabs;
@@ -18,7 +19,7 @@ const SearchBatch = () => {
       <Container className="desktop-container my-5 p-4" fluid>
         <Row>
           <Col>
-            <BreadcrumbSearchBatch />
+            <Breadcrumb names={breadcrumbSearchBatch} />
 
             <Tabs defaultActiveKey="1">
               <TabPane tab=" Parámetros de búsqueda" key="1">

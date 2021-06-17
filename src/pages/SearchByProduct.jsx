@@ -1,9 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbSearchByProduct from "../components/BreadcrumbSearchByProduct";
+import Breadcrumb from "../components/Breadcrumb";
 import FormSearchByProduct from "../components/FormSearchByProduct";
-import { Table } from "antd";
-import { columnsSearchByNumber, dataExample } from "../data/data";
+// import { Table } from "antd";
+// import { columnsSearchByNumber, dataExample } from "../data/data";
 import { useState } from "react";
+import { breadcrumbSearchByProduct } from "../data/dataBreadcrumbs";
 
 const SearchByProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,19 +17,13 @@ const SearchByProduct = () => {
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>
         <Col>
-          <BreadcrumbSearchByProduct />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+          <Breadcrumb names={breadcrumbSearchByProduct} />
+
           <FormSearchByProduct
             handleSubmit={handleSubmit}
             isLoading={isLoading}
           />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+
           {/* <Table
             columns={columnsSearchByNumber}
             dataSource={dataExample}

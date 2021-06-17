@@ -1,8 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbBatchList from "../components/BreadcrumbBatchList";
+import Breadcrumb from "../components/Breadcrumb";
 import FormBatchList from "../components/FormBatchList";
 import { columnsBatchList, dataExampleBatchList } from "../data/data";
 import { Table } from "antd";
+import { breadcrumbBatchList } from "../data/dataBreadcrumbs";
 
 const BatchList = () => {
   const handleSubmit = (data) => {
@@ -12,7 +13,7 @@ const BatchList = () => {
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>
         <Col>
-          <BreadcrumbBatchList />
+          <Breadcrumb names={breadcrumbBatchList} />
 
           <FormBatchList handleSubmit={handleSubmit} />
 

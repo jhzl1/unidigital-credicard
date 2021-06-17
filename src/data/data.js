@@ -39,10 +39,7 @@ export const columnsBatchList = [
       <Space size="middle">
         <a href="/">
           Ver en PDF
-          <FilePdfOutlined
-            style={{ color: "red" }}
-            onClick={console.log("funciona")}
-          />
+          <FilePdfOutlined style={{ color: "red" }} />
         </a>
       </Space>
     ),

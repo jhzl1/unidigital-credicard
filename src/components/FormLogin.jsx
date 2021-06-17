@@ -11,7 +11,7 @@ const FormLogin = ({ handleSubmit }) => {
     >
       <Form className="my-4 d-flex flex-column justify-content-center">
         <Form.Item name="UserName" placeholder="Ingrese su correo">
-          <Input name="UserName" />
+          <Input name="UserName" id="UserName" />
         </Form.Item>
         <Form.Item name="Password" placeholder="Ingrese su correo">
           <Input.Password name="Password" />

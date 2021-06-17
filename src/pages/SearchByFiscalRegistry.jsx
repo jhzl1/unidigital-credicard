@@ -1,10 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BreadcrumbSearchByFiscalRegistry from "../components/BreadcrumbSearchByFiscalRegistry";
+import Breadcrumb from "../components/Breadcrumb";
 import FormSearchByFiscalRegistry from "../components/FormSearchByFiscalRegistry";
 import { Table, Spin, message } from "antd";
 import { useState } from "react";
 import { columnsGeneral } from "../data/dataGeneralTable";
 import { sendData } from "../services/api";
+import { breadcrumbSearchByFiscalRegistry } from "../data/dataBreadcrumbs";
 
 const SearchByFiscalRegistry = () => {
   const [dataTable, setDataTable] = useState([]);
@@ -31,7 +32,7 @@ const SearchByFiscalRegistry = () => {
     <Container className="desktop-container my-5 p-4" fluid>
       <Row>
         <Col>
-          <BreadcrumbSearchByFiscalRegistry />
+          <Breadcrumb names={breadcrumbSearchByFiscalRegistry} />
 
           <FormSearchByFiscalRegistry handleSubmit={handleSubmit} />
           {loading && (

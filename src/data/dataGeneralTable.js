@@ -45,15 +45,8 @@ export const columnsGeneral = [
     dataIndex: "total",
     key: "total",
     render: (number) => (
-      <span
-        className="fw-bold"
-        onClick={() =>
-          console.log(parseInt(number.slice(1).toLocaleString("fr-FR")))
-        }
-      >
-        {number.charAt(0) === "$"
-          ? number.slice(1).toLocaleString("fr-FR")
-          : number}
+      <span className="fw-bold">
+        {number.charAt(0) === "$" ? parseFloat(number.slice(1)) : number}
       </span>
     ),
   },
