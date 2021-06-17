@@ -1,8 +1,12 @@
 import { Formik } from "formik";
-import { Form, Input, SubmitButton, Select } from "formik-antd";
+import { Form, Input, SubmitButton } from "formik-antd";
+import { Checkbox } from "antd";
+import { useState } from "react";
 import { initialValuesLogin, validationLogin } from "../data/dataFormLogin";
 
 const FormLogin = ({ handleSubmit }) => {
+  const [remember, setRemember] = useState(true);
+
   return (
     <Formik
       initialValues={initialValuesLogin}
@@ -17,10 +21,15 @@ const FormLogin = ({ handleSubmit }) => {
           <Input.Password name="Password" />
         </Form.Item>
 
-        {/* <Form.Item name="remember" valuePropName="checked">
-          <Checkbox className="checkbox">Recuérdame</Checkbox>
-        </Form.Item> */}
-
+        <Form.Item name="remember">
+          <Checkbox
+            className="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(!remember)}
+          >
+            Recuérdame
+          </Checkbox>
+        </Form.Item>
         <SubmitButton>Iniciar sesión</SubmitButton>
       </Form>
     </Formik>

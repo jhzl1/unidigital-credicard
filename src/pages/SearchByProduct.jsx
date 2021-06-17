@@ -1,10 +1,12 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Breadcrumb from "../components/Breadcrumb";
 import FormSearchByProduct from "../components/FormSearchByProduct";
 // import { Table } from "antd";
 // import { columnsSearchByNumber, dataExample } from "../data/data";
 import { useState } from "react";
 import { breadcrumbSearchByProduct } from "../data/dataBreadcrumbs";
+import { desktopVariants } from "../data/dataAnimation";
+import { motion } from "framer-motion";
 
 const SearchByProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,7 +16,13 @@ const SearchByProduct = () => {
   };
 
   return (
-    <Container className="desktop-container my-5 p-4" fluid>
+    <motion.div
+      className="my-5 p-4 desktop-container"
+      variants={desktopVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+    >
       <Row>
         <Col>
           <Breadcrumb names={breadcrumbSearchByProduct} />
@@ -33,7 +41,7 @@ const SearchByProduct = () => {
           /> */}
         </Col>
       </Row>
-    </Container>
+    </motion.div>
   );
 };
 

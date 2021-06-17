@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Breadcrumb from "../components/Breadcrumb";
 import FormSearchByFiscalRegistry from "../components/FormSearchByFiscalRegistry";
 import { Table, Spin, message } from "antd";
@@ -6,6 +6,8 @@ import { useState } from "react";
 import { columnsGeneral } from "../data/dataGeneralTable";
 import { sendData } from "../services/api";
 import { breadcrumbSearchByFiscalRegistry } from "../data/dataBreadcrumbs";
+import { desktopVariants } from "../data/dataAnimation";
+import { motion } from "framer-motion";
 
 const SearchByFiscalRegistry = () => {
   const [dataTable, setDataTable] = useState([]);
@@ -29,7 +31,13 @@ const SearchByFiscalRegistry = () => {
   };
 
   return (
-    <Container className="desktop-container my-5 p-4" fluid>
+    <motion.div
+      className="my-5 p-4 desktop-container"
+      variants={desktopVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+    >
       <Row>
         <Col>
           <Breadcrumb names={breadcrumbSearchByFiscalRegistry} />
@@ -53,7 +61,7 @@ const SearchByFiscalRegistry = () => {
           )}
         </Col>
       </Row>
-    </Container>
+    </motion.div>
   );
 };
 

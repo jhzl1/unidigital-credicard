@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import FormSearchByControl from "../components/FormSearchByControl";
 import Breadcrumb from "../components/Breadcrumb";
 import { Table, Spin, message } from "antd";
@@ -6,6 +6,8 @@ import { useState } from "react";
 import { sendData } from "../services/api";
 import { columnsGeneral } from "../data/dataGeneralTable";
 import { breadcrumbSearchByControl } from "../data/dataBreadcrumbs";
+import { desktopVariants } from "../data/dataAnimation";
+import { motion } from "framer-motion";
 
 const SearchByControl = () => {
   const [dataTable, setDataTable] = useState([]);
@@ -25,8 +27,6 @@ const SearchByControl = () => {
       ) {
         message.warning(res.data.information[0], [5]);
       }
-
-      // resetForm();
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,13 @@ const SearchByControl = () => {
   };
 
   return (
-    <Container className="desktop-container my-5 p-4" fluid>
+    <motion.div
+      className="my-5 p-4 desktop-container"
+      variants={desktopVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+    >
       <Row>
         <Col>
           <Breadcrumb names={breadcrumbSearchByControl} />
@@ -58,7 +64,7 @@ const SearchByControl = () => {
           )}
         </Col>
       </Row>
-    </Container>
+    </motion.div>
   );
 };
 

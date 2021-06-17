@@ -6,6 +6,8 @@ import { UserAddOutlined } from "@ant-design/icons";
 import FormCreateNewUser from "../components/FormCreateNewUser";
 import Breadcrumb from "../components/Breadcrumb";
 import { breadcrumbAdmin } from "../data/dataBreadcrumbs";
+import { motion } from "framer-motion";
+import { desktopVariants } from "../data/dataAnimation";
 
 const AdminPage = () => {
   const [visible, setVisible] = useState(false);
@@ -19,7 +21,13 @@ const AdminPage = () => {
   };
 
   return (
-    <Container className="desktop-container my-5 p-4 " fluid>
+    <motion.div
+      className="my-5 p-4 desktop-container"
+      variants={desktopVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+    >
       <Col>
         <Breadcrumb names={breadcrumbAdmin} />
 
@@ -38,7 +46,7 @@ const AdminPage = () => {
 
         <UserList />
       </Col>
-    </Container>
+    </motion.div>
   );
 };
 

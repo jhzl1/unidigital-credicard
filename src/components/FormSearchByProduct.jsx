@@ -64,7 +64,7 @@ const FormSearchByProduct = ({ handleSubmit }) => {
         validationSchema={validationSearchByProduct}
         onSubmit={() => handleSubmit(data)}
       >
-        <Form className="d-flex">
+        <Form className="d-flex form pt-3 px-2">
           <Form.Item name="CompanyStrongId" className="w-25 me-2">
             <Select
               name="CompanyStrongId"
