@@ -17,7 +17,7 @@ const Login = () => {
   }
 
   return (
-    <div className="general-login">
+    <div className="d-flex general-login">
       <motion.div
         className=" login d-flex flex-row flex-wrap"
         variants={loginVariants}

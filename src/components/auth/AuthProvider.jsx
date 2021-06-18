@@ -44,6 +44,8 @@ const AuthProvider = ({ children }) => {
     logout() {
       setIsAuthenticated("");
       localStorage.removeItem("jwt");
+      localStorage.removeItem("companies");
+      localStorage.removeItem("products");
     },
     isLogged() {
       return !!isAuthenticated;

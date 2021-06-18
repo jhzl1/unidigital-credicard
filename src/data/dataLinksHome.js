@@ -1,22 +1,27 @@
+import * as AiIcons from "react-icons/ai";
+import * as ImIcons from "react-icons/im";
+import * as HiIcons from "react-icons/hi";
+import * as IoIcons from "react-icons/io5";
+
 export const linksHome = [
   {
-    title: "Buscar documentos por número",
+    title: "Por número",
+    icon: <AiIcons.AiOutlineFieldNumber />,
     path: "/documents/SearchByNumber",
-    id: "first-link",
   },
   {
-    title: "Buscar documentos por número de control",
+    title: "Por número de control",
+    icon: <ImIcons.ImListNumbered />,
     path: "/documents/SearchByControl",
-    id: "second-link",
   },
   {
-    title: "Buscar documentos por RIF o cédula",
+    title: "Por RIF o cédula",
+    icon: <HiIcons.HiIdentification />,
     path: "/documents/SearchByFiscalRegistry",
-    id: "third-link",
   },
   {
-    title: "Buscar por Tipo de Documento",
-    path: "/statistics/SearchBatchs",
-    id: "fourth-link",
+    title: "Por Tipo de Documento",
+    icon: <IoIcons.IoDocuments />,
+    path: "/documents/SearchByProduct",
   },
 ];

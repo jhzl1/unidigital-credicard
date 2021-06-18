@@ -64,7 +64,7 @@ c-0.6-1-1.1-2.3-0.6-3.2c0.7-1.1,2-0.1,3,0.1c36.6,9.1,71.7,5.7,104.8-12.6c14.4-8,
         animate="visible"
         src={UnidigitalLogo}
         alt="Unidigital"
-        className="logo-login ms-2 mt-2"
+        className="logo-login ms-2 mt-2 d-none d-sm-none d-md-block"
       />
     </>
   );

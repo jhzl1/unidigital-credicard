@@ -45,6 +45,10 @@
   }
 }
 
+.bm-burger-button-active {
+  right: -58px;
+}
+
 /* Position and sizing of clickable cross button */
 .bm-cross-button {
   height: 24px;
@@ -65,4 +69,10 @@
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 992px) {
+  .pro-sidebar > .pro-sidebar-inner {
+    background: transparent;
+  }
 }

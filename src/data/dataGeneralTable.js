@@ -1,7 +1,13 @@
 import { Tag, Button } from "antd";
 import { FilePdfOutlined } from "@ant-design/icons";
-import { getDocument } from "../services/api";
 import moment from "moment";
+import { getDocument } from "../services/getDocument";
+
+const transformNumber = (number) => {
+  let decimal = number.search(",");
+  let result = number.substring(0, decimal + 3);
+  return result;
+};
 
 export const columnsGeneral = [
   {
@@ -27,6 +33,7 @@ export const columnsGeneral = [
   {
     title: "Fecha",
     dataIndex: "emissionDate",
+    align: "center",
     key: "emissionDate",
     render: (text) => <span>{moment(text.slice(0, 10)).format("L")}</span>,
   },
@@ -38,21 +45,24 @@ export const columnsGeneral = [
   {
     title: "Moneda",
     dataIndex: "currency",
+    align: "center",
     key: "currency",
   },
   {
     title: "Total",
     dataIndex: "total",
+    align: "center",
     key: "total",
     render: (number) => (
-      <span className="fw-bold">
-        {number.charAt(0) === "$" ? parseFloat(number.slice(1)) : number}
+      <span className="fst-italic">
+        {number.charAt(0) === "$" ? transformNumber(number) : number}
       </span>
     ),
   },
 
   {
     title: "Acción",
+    align: "center",
     key: "action",
     render: (text, record) => (
       <Button

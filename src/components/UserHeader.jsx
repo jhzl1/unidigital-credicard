@@ -45,11 +45,7 @@ const UserHeader = ({ userName, userSurname, role }) => {
         </Divider>
       </div>
       <Menu.Item>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-        >
+        <a href="/">
           <KeyOutlined /> Cambiar Contraseña
         </a>
       </Menu.Item>

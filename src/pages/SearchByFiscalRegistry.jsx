@@ -4,16 +4,17 @@ import FormSearchByFiscalRegistry from "../components/FormSearchByFiscalRegistry
 import { Table, Spin, message } from "antd";
 import { useState } from "react";
 import { columnsGeneral } from "../data/dataGeneralTable";
-import { sendData } from "../services/api";
 import { breadcrumbSearchByFiscalRegistry } from "../data/dataBreadcrumbs";
 import { desktopVariants } from "../data/dataAnimation";
 import { motion } from "framer-motion";
+import { sendData } from "../services/sendData";
 
 const SearchByFiscalRegistry = () => {
   const [dataTable, setDataTable] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (data) => {
+    setDataTable([]);
     setLoading(true);
     try {
       const res = await sendData("/documents/searchbyrif", data);

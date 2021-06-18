@@ -3,18 +3,19 @@ import { Row, Col } from "react-bootstrap";
 import Breadcrumb from "../components/Breadcrumb";
 import { Table, Spin, message } from "antd";
 import { useState } from "react";
-import { sendData } from "../services/api";
 import { notFoundDocument } from "../data/dataErrors";
 import { desktopVariants } from "../data/dataAnimation";
 import { motion } from "framer-motion";
 import { columnsGeneral } from "../data/dataGeneralTable";
 import { breadcrumbSearchByDocNumber } from "../data/dataBreadcrumbs";
+import { sendData } from "../services/sendData";
 
 const SearchByDocNumber = () => {
   const [dataTable, setDataTable] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (data) => {
+    setDataTable([]);
     setLoading(true);
     try {
       const res = await sendData("/documents/searchbynumber", data);
@@ -49,7 +50,7 @@ const SearchByDocNumber = () => {
             </div>
           )}
 
-          {dataTable.length > 1 && (
+          {dataTable.length !== 0 && (
             <Table
               columns={columnsGeneral}
               dataSource={dataTable}

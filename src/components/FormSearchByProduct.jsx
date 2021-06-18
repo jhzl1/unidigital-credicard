@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { validationSearchByProduct } from "../data/dataSearchByProduct";
 import { Button } from "antd";
-import { getData } from "../services/api";
+import { useGetHttp } from "../hooks/useGetHttp";
 
 const FormSearchByProduct = ({ handleSubmit }) => {
   const [data, setData] = useState({
@@ -12,9 +12,9 @@ const FormSearchByProduct = ({ handleSubmit }) => {
     dateFrom: null,
     dateTo: null,
   });
-  const [company, setCompany] = useState([]);
-  const [product, setProduct] = useState([]);
-  const [disabled, setDisabled] = useState(false);
+  const [company] = useGetHttp("/companies/list");
+  const [product] = useGetHttp("/products/list");
+  const [disabled, setDisabled] = useState(true);
 
   const { Option } = Select;
 
@@ -25,36 +25,11 @@ const FormSearchByProduct = ({ handleSubmit }) => {
     });
   };
 
-  const getParameters = async () => {
-    setDisabled(true);
-    const getProducts = await getData("/products/list");
-
-    localStorage.setItem("products", JSON.stringify(getProducts.data.products));
-
-    setProduct(getProducts.data.products);
-
-    const getCompany = await getData("/companies/list");
-    localStorage.setItem(
-      "companiesList",
-      JSON.stringify(getCompany.data.companies)
-    );
-
-    setCompany(getCompany.data.companies);
-
-    setDisabled(false);
-  };
-
   useEffect(() => {
-    if (
-      localStorage.getItem("companiesList") &&
-      localStorage.getItem("products")
-    ) {
-      setCompany(JSON.parse(localStorage.getItem("companiesList")));
-      setProduct(JSON.parse(localStorage.getItem("products")));
-    } else {
-      getParameters();
+    if (company.length !== 0 && product.length !== 0) {
+      setDisabled(false);
     }
-  }, []);
+  }, [company, product]);
 
   return (
     <>
@@ -64,12 +39,13 @@ const FormSearchByProduct = ({ handleSubmit }) => {
         validationSchema={validationSearchByProduct}
         onSubmit={() => handleSubmit(data)}
       >
-        <Form className="d-flex form pt-3 px-2">
-          <Form.Item name="CompanyStrongId" className="w-25 me-2">
+        <Form className="d-flex form pt-3 px-2 justify-content-center flex-wrap w-100">
+          <Form.Item name="CompanyStrongId" className="input me-2">
             <Select
               name="CompanyStrongId"
               placeholder="Seleccione una empresa"
               onChange={(value) => handleChangeData("CompanyStrongId", value)}
+              loading={disabled}
               disabled={disabled}
             >
               {company.map((item) => (
@@ -79,11 +55,12 @@ const FormSearchByProduct = ({ handleSubmit }) => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="ProductStrongId" className="w-25 me-2">
+          <Form.Item name="ProductStrongId" className="input me-2">
             <Select
               name="ProductStrongId"
               placeholder="Seleccione Tipo de Documento"
               onChange={(value) => handleChangeData("ProductStrongId", value)}
+              loading={disabled}
               disabled={disabled}
             >
               {product.map((item) => (
@@ -94,30 +71,32 @@ const FormSearchByProduct = ({ handleSubmit }) => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="dateFrom" className="w-25 me-2">
+          <Form.Item name="dateFrom" className="input me-2">
             <DatePicker
               name="dateFrom"
               placeholder="Fecha emisión (Desde)"
               className="me-3 w-100"
               format="DD-MM-YYYY"
+              disabled={disabled}
               onChange={(date, dateString) =>
                 handleChangeData("dateFrom", dateString)
               }
             />
           </Form.Item>
-          <Form.Item name="dateTo" className="w-25 me-2">
+          <Form.Item name="dateTo" className="input me-2">
             <DatePicker
               name="dateTo"
               placeholder="Fecha emisión (Hasta)"
               className="me-3 w-100"
               format="DD-MM-YYYY"
+              disabled={disabled}
               onChange={(date, dateString) =>
                 handleChangeData("dateTo", dateString)
               }
             />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={disabled}>
             Buscar
           </Button>
         </Form>

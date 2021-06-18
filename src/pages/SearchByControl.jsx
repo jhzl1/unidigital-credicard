@@ -3,17 +3,18 @@ import FormSearchByControl from "../components/FormSearchByControl";
 import Breadcrumb from "../components/Breadcrumb";
 import { Table, Spin, message } from "antd";
 import { useState } from "react";
-import { sendData } from "../services/api";
 import { columnsGeneral } from "../data/dataGeneralTable";
 import { breadcrumbSearchByControl } from "../data/dataBreadcrumbs";
 import { desktopVariants } from "../data/dataAnimation";
 import { motion } from "framer-motion";
+import { sendData } from "../services/sendData";
 
 const SearchByControl = () => {
   const [dataTable, setDataTable] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (data) => {
+    setDataTable([]);
     setLoading(true);
     console.log(data);
     try {

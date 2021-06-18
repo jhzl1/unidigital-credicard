@@ -3,16 +3,22 @@
   border-radius: 5px;
   border: 1px solid rgba(17, 17, 26, 0.1);
 }
+.ant-table-thead > tr > th {
+  font-weight: bold !important;
+}
 
 .form {
   background-color: white;
   border-radius: 5px;
   border: 1px solid rgba(17, 17, 26, 0.1);
-}
-
-@media (max-width: 426px) {
-  .input-default {
-    margin-bottom: 10px !important;
+  .input {
+    width: 22%;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    .input {
+      width: 100% !important;
+    }
   }
 }
 
@@ -20,4 +26,8 @@
   svg {
     margin-bottom: 5px;
   }
+}
+
+.anticon svg {
+  margin-bottom: 5px;
 }

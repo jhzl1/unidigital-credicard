@@ -20,7 +20,7 @@ const MenuDesktop = () => {
           className="logo-menu"
         />
       </Link>
-      <Menu iconShape="square" style={{ minHeight: "100vh" }}>
+      <Menu iconShape="square" style={{ height: "90.8vh" }}>
         {dataMenu.map((item) => (
           <SubMenu
             key={item.id}

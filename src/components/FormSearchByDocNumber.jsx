@@ -15,12 +15,9 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    const checkCompleted = () => {
-      if (company !== undefined && product !== undefined) {
-        setDisabled(false);
-      }
-    };
-    checkCompleted();
+    if (company.length !== 0 && product.length !== 0) {
+      setDisabled(false);
+    }
   }, [company, product]);
 
   return (
@@ -29,10 +26,10 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSearchByDocNumber}
-        onSubmit={(data) => handleSubmit(data)}
+        onSubmit={(data, { resetForm }) => handleSubmit(data, { resetForm })}
       >
         <Form className="d-flex form pt-3 px-2">
-          <Form.Item name="CompanyStrongId" className="w-25  me-2">
+          <Form.Item name="CompanyStrongId" className="w-25 input me-2">
             <Select
               name="CompanyStrongId"
               placeholder="Seleccione una empresa"
@@ -46,7 +43,7 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="ProductStrongId" className="w-25 me-2">
+          <Form.Item name="ProductStrongId" className="w-25 input me-2">
             <Select
               name="ProductStrongId"
               placeholder="Seleccione un tipo de documento"
@@ -60,11 +57,15 @@ const FormSearchByDocNumber = ({ handleSubmit }) => {
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="Number" className="w-25 me-2">
-            <Input name="Number" placeholder="Introduzca número de documento" />
+          <Form.Item name="Number" className="w-25 input me-2">
+            <Input
+              name="Number"
+              placeholder="Introduzca número de documento"
+              disabled={disabled}
+            />
           </Form.Item>
 
-          <SubmitButton className="me-3" disabled={disabled}>
+          <SubmitButton className="me-3 mb-3 input" disabled={disabled}>
             Buscar
           </SubmitButton>
         </Form>

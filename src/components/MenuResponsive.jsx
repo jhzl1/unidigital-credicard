@@ -14,7 +14,12 @@ const MenuResponsive = () => {
     <MenuSlide
       isOpen={false}
       onStateChange={() => setIsOpen(!isOpen)}
-      customBurgerIcon={<Burger isOpen={isOpen} />}
+      customBurgerIcon={
+        <Burger
+          isOpen={isOpen}
+          className={isOpen ? "bm-burger-button-active" : null}
+        />
+      }
     >
       <ProSidebar
         collapsed={false}
@@ -28,7 +33,7 @@ const MenuResponsive = () => {
             className="logo-menu"
           />
         </Link>
-        <Menu iconShape="square" style={{ minHeight: "100vh" }}>
+        <Menu iconShape="square" style={{ maxHeight: "100vh" }}>
           {dataMenu.map((item) => (
             <SubMenu
               key={item.id}

@@ -1,33 +1,20 @@
 import { Formik } from "formik";
 import { Form, Input, SubmitButton, Select } from "formik-antd";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { initialValues, validationBatchList } from "../data/dataBatchList";
-import { getData } from "../services/api";
+import { useGetHttp } from "../hooks/useGetHttp";
 
 const FormBatchList = ({ handleSubmit }) => {
   const { Option } = Select;
-  const [company, setCompany] = useState([]);
-  const [disabled, setDisabled] = useState(false);
+  const [company] = useGetHttp("/companies/list");
+  const [disabled, setDisabled] = useState(true);
 
-  const getParameters = async () => {
-    setDisabled(true);
+  useEffect(() => {
+    if (company.length !== 0) {
+      setDisabled(false);
+    }
+  }, [company]);
 
-    const getCompanies = await getData("/companies/list");
-
-    localStorage.setItem("companiesList", JSON.stringify(getCompanies));
-
-    setCompany(getCompanies.data.companies);
-
-    setDisabled(false);
-  };
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("companiesList")) {
-  //     setCompany(JSON.parse(localStorage.getItem("companiesList")));
-  //   } else {
-  //     getParameters();
-  //   }
-  // }, []);
   return (
     <>
       <h4>Parámetros de búsqueda</h4>
@@ -42,6 +29,7 @@ const FormBatchList = ({ handleSubmit }) => {
               name="CompanyStrongId"
               placeholder="Seleccione una empresa"
               disabled={disabled}
+              loading={disabled}
             >
               {company.map((item) => (
                 <Option value={item.strongId} key={item.strongId}>
@@ -52,10 +40,17 @@ const FormBatchList = ({ handleSubmit }) => {
           </Form.Item>
 
           <Form.Item name="Number" className="w-25 me-2">
-            <Input name="Number" placeholder="Introduzca número de control" />
+            <Input
+              name="Number"
+              placeholder="Introduzca número de control"
+              disabled={disabled}
+              maxLength={10}
+            />
           </Form.Item>
 
-          <SubmitButton className="me-3">Buscar</SubmitButton>
+          <SubmitButton className="me-3" disabled={disabled}>
+            Buscar
+          </SubmitButton>
         </Form>
       </Formik>
     </>
